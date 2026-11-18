@@ -1,0 +1,23 @@
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                   AppleCosmetic — сообщения                        ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# Форматы текста: MiniMessage и коды &c, &l, &#ff8800.
+# {prefix} — приставка, {name} — название косметики.
+# Чтобы отключить сообщение, оставьте пустую строку: "".
+
+prefix: "<gradient:#ff5f6d:#ffc371><bold>AppleCosmetic</bold></gradient> <dark_gray>»</dark_gray> "
+
+# Подставляется вместо названия, когда ничего не выбрано.
+none: "<gray>ничего"
+
+only-players: "{prefix}<red>Эта команда доступна только игрокам."
+no-permission: "{prefix}<red>У вас нет прав на эту команду."
+reloaded: "{prefix}<green>Конфигурация перезагружена."
+
+selected: "{prefix}<gray>Выбрано: <reset>{name}"
+unselected: "{prefix}<gray>Снято: <reset>{name}"
+locked: "{prefix}<red>Вам недоступно: <reset>{name}"
+lost-access: "{prefix}<red>Доступ закончился, косметика снята: <reset>{name}"
+reset-all: "{prefix}<gray>Вся косметика снята."
+nothing-selected: "{prefix}<gray>Снимать нечего."
+preview: "{prefix}<gray>Предпросмотр: <reset>{name}"

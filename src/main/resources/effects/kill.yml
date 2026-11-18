@@ -1,0 +1,203 @@
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                AppleCosmetic — эффекты убийства                    ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# Эффект проигрывается на месте гибели противника, которого убил игрок.
+# Кого считать противником (игроков, мобов), задаётся в config.yml → effects.kill.
+#
+# Поля эффекта:
+#   name        — название в меню
+#   icon        — иконка в меню (форматы предметов описаны в config.yml)
+#   lore        — описание в меню
+#   permission  — право доступа; по умолчанию applecosmetic.kill.<id>,
+#                 пустая строка "" делает эффект доступным всем
+#   sounds      — звуки: { name: ключ, volume: громкость, pitch: высота }
+#   lightning   — true: удар молнии (только вспышка, без урона и огня)
+#   firework    — фейерверк без урона: { type, colors, fade, flicker, trail }
+#                 type: BALL, BALL_LARGE, STAR, BURST, CREEPER
+#   layers      — слои частиц, проигрываются одновременно
+#
+# Параметры слоя:
+#   animation   — форма:
+#                   BURST    — вспышка в одной точке (radius — разброс)
+#                   RING     — кольцо, расходящееся по земле
+#                   HELIX    — спираль вверх (amount — число нитей)
+#                   SPHERE   — расширяющаяся сфера
+#                   IMPLODE  — сфера, сжимающаяся в точку
+#                   FOUNTAIN — фонтан вверх (speed — сила)
+#                   RAIN     — дождь с высоты height
+#                   COLUMN   — вертикальный столб
+#                   VORTEX   — вихрь, расширяющийся кверху
+#                   HEART    — вращающееся сердце
+#                   STAR     — пентаграмма на земле
+#                   CROSS    — крест
+#   particle    — частица: https://jd.papermc.io/paper/1.21.11/org/bukkit/Particle.html
+#   amount      — количество частиц
+#   radius      — радиус, height — высота, y-offset — подъём над землёй (в блоках)
+#   duration    — длительность в тиках, delay — задержка перед началом
+#   speed       — скорость разлёта частиц
+#   color       — цвет "#RRGGBB" для DUST, DUST_COLOR_TRANSITION (ещё to-color),
+#                 ENTITY_EFFECT, EFFECT, INSTANT_EFFECT, FLASH, TINTED_LEAVES
+#   size        — размер частиц DUST (от 0.1 до 4)
+#   rainbow     — true: радужная окраска цветных частиц
+#   material    — блок или предмет для BLOCK, ITEM, FALLING_DUST, DUST_PILLAR, BLOCK_CRUMBLE
+
+effects:
+  lightning:
+    name: "<gradient:#fff59d:#ffd54f>Удар молнии</gradient>"
+    icon: LIGHTNING_ROD
+    lore:
+      - "<gray>Небеса карают поверженного врага."
+    lightning: true
+    layers:
+      - { animation: BURST, particle: ELECTRIC_SPARK, amount: 40, radius: 0.5, speed: 0.4 }
+      - { animation: RING, particle: END_ROD, amount: 20, radius: 2.0, duration: 8 }
+
+  explosion:
+    name: "<gradient:#ff6b6b:#ffa751>Взрыв</gradient>"
+    icon: TNT
+    lore:
+      - "<gray>Громкая точка в споре."
+    sounds:
+      - { name: entity.generic.explode, volume: 1.0, pitch: 1.0 }
+    layers:
+      - { animation: BURST, particle: EXPLOSION_EMITTER, amount: 1, radius: 0.0, speed: 0.0 }
+      - { animation: BURST, particle: LAVA, amount: 20, radius: 0.5 }
+      - { animation: RING, particle: LARGE_SMOKE, amount: 24, radius: 2.5, duration: 10 }
+
+  blood:
+    name: "<gradient:#ff4b4b:#a80000>Кровавая расправа</gradient>"
+    icon: REDSTONE
+    lore:
+      - "<gray>Жестоко, зато наглядно."
+    sounds:
+      - { name: entity.player.attack.strong, volume: 1.0, pitch: 0.6 }
+    layers:
+      - { animation: BURST, particle: BLOCK, material: REDSTONE_BLOCK, amount: 80, radius: 0.35, speed: 0.2 }
+      - { animation: FOUNTAIN, particle: ITEM, material: REDSTONE, amount: 4, radius: 0.3, speed: 0.35, duration: 8 }
+
+  inferno:
+    name: "<gradient:#ffb347:#ff5f1f>Огненный вихрь</gradient>"
+    icon: BLAZE_POWDER
+    lore:
+      - "<gray>От врага остаётся только пепел."
+    sounds:
+      - { name: entity.blaze.shoot, volume: 1.0, pitch: 0.8 }
+    layers:
+      - { animation: HELIX, particle: FLAME, radius: 0.9, height: 2.4, duration: 24 }
+      - { animation: BURST, particle: LAVA, amount: 12, radius: 0.3 }
+
+  soul_reaper:
+    name: "<gradient:#7df9ff:#3aa6b9>Похититель душ</gradient>"
+    icon: SOUL_LANTERN
+    lore:
+      - "<gray>Душа врага уходит вверх."
+    sounds:
+      - { name: particle.soul_escape, volume: 2.0, pitch: 0.8 }
+    layers:
+      - { animation: VORTEX, particle: SOUL, amount: 10, radius: 1.0, height: 2.6, duration: 30 }
+      - { animation: COLUMN, particle: SOUL_FIRE_FLAME, amount: 4, radius: 0.2, height: 2.4, duration: 30 }
+
+  firework:
+    name: "<gradient:#ff6b6b:#ffe66d>Салют победителя</gradient>"
+    icon: FIREWORK_ROCKET
+    lore:
+      - "<gray>Победу принято отмечать."
+    firework: { type: BALL_LARGE, colors: ["#ff3b3b", "#ffd93b"], fade: ["#ffffff"], flicker: true, trail: true }
+
+  frost:
+    name: "<gradient:#e0f7ff:#7de8ff>Ледяная гробница</gradient>"
+    icon: BLUE_ICE
+    lore:
+      - "<gray>Враг рассыпается ледяной крошкой."
+    sounds:
+      - { name: block.glass.break, volume: 1.0, pitch: 0.7 }
+    layers:
+      - { animation: SPHERE, particle: SNOWFLAKE, amount: 30, radius: 1.6, duration: 8 }
+      - { animation: BURST, particle: BLOCK, material: ICE, amount: 60, radius: 0.4, speed: 0.15 }
+
+  heartbreak:
+    name: "<gradient:#ff8fab:#ff2e4d>Разбитое сердце</gradient>"
+    icon: POPPY
+    lore:
+      - "<gray>Ничего личного."
+    sounds:
+      - { name: block.amethyst_block.break, volume: 1.0, pitch: 0.6 }
+    layers:
+      - { animation: HEART, particle: DUST, color: "#ff2e4d", size: 1.3, radius: 0.9, duration: 30 }
+      - { animation: BURST, particle: DAMAGE_INDICATOR, amount: 12, radius: 0.4, speed: 0.2 }
+
+  black_hole:
+    name: "<gradient:#c77dff:#5a189a>Чёрная дыра</gradient>"
+    icon: ENDER_PEARL
+    lore:
+      - "<gray>Врага затягивает в пустоту."
+    sounds:
+      - { name: entity.enderman.teleport, volume: 1.0, pitch: 0.5 }
+    layers:
+      - { animation: IMPLODE, particle: DUST, color: "#7b2cbf", size: 1.2, amount: 30, radius: 2.0, duration: 14 }
+      - { animation: BURST, particle: PORTAL, amount: 120, radius: 0.2, speed: 1.2 }
+
+  dna:
+    name: "<gradient:#c77dff:#4dd2ff>Спираль ДНК</gradient>"
+    icon: AMETHYST_SHARD
+    lore:
+      - "<gray>Разобран на составляющие."
+    sounds:
+      - { name: block.amethyst_block.chime, volume: 1.5, pitch: 0.8 }
+    layers:
+      - { animation: HELIX, particle: DUST_COLOR_TRANSITION, color: "#b44dff", to-color: "#4dd2ff", size: 1.2, radius: 0.6, height: 2.4, duration: 30 }
+
+  gold_rush:
+    name: "<gradient:#ffe259:#ffa751>Золотая лихорадка</gradient>"
+    icon: GOLD_INGOT
+    lore:
+      - "<gray>Из врага сыплется золото."
+      - "<dark_gray>Подобрать его нельзя."
+    sounds:
+      - { name: entity.experience_orb.pickup, volume: 1.0, pitch: 0.7 }
+    layers:
+      - { animation: FOUNTAIN, particle: ITEM, material: GOLD_NUGGET, amount: 6, radius: 0.3, speed: 0.45, duration: 18 }
+      - { animation: RING, particle: WAX_ON, amount: 20, radius: 1.5, duration: 10 }
+
+  pentagram:
+    name: "<gradient:#ff4b4b:#7a0000>Пентаграмма</gradient>"
+    icon: WITHER_ROSE
+    lore:
+      - "<gray>Тёмный ритуал завершён."
+    sounds:
+      - { name: entity.evoker.prepare_summon, volume: 1.0, pitch: 0.7 }
+    layers:
+      - { animation: STAR, particle: DUST, color: "#c40000", size: 1.2, radius: 1.8, duration: 40 }
+      - { animation: COLUMN, particle: SMOKE, amount: 6, radius: 0.3, height: 2.0, duration: 40 }
+
+  tornado:
+    name: "<gradient:#ffffff:#b8c6db>Торнадо</gradient>"
+    icon: WIND_CHARGE
+    lore:
+      - "<gray>Врага уносит ветром."
+    sounds:
+      - { name: entity.breeze.wind_burst, volume: 1.0, pitch: 0.8 }
+    layers:
+      - { animation: VORTEX, particle: CLOUD, amount: 18, radius: 1.5, height: 3.2, duration: 30 }
+      - { animation: BURST, particle: GUST, amount: 2, radius: 0.5, speed: 0.0 }
+
+  sakura:
+    name: "<gradient:#ffd1dc:#ff8fab>Цветение сакуры</gradient>"
+    icon: PINK_PETALS
+    lore:
+      - "<gray>Красиво даже в поражении."
+    sounds:
+      - { name: block.cherry_leaves.break, volume: 1.0, pitch: 1.0 }
+    layers:
+      - { animation: RAIN, particle: CHERRY_LEAVES, amount: 6, radius: 1.5, height: 3.0, duration: 40 }
+      - { animation: RING, particle: DUST, color: "#ffb7d5", amount: 24, radius: 1.5, duration: 12 }
+
+  triumph:
+    name: "<gradient:#a8ff78:#ffe259>Триумф</gradient>"
+    icon: TOTEM_OF_UNDYING
+    lore:
+      - "<gray>Победа, достойная легенд."
+    sounds:
+      - { name: item.totem.use, volume: 0.6, pitch: 1.2 }
+    layers:
+      - { animation: BURST, particle: TOTEM_OF_UNDYING, amount: 80, radius: 0.3, speed: 0.6 }

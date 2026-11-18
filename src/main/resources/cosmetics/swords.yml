@@ -1,0 +1,82 @@
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                  AppleCosmetic — облики мечей                      ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# Выбранный облик меняет внешний вид всех мечей в инвентаре игрока.
+# Урон, чары и прочность остаются прежними — меняется только модель.
+# Мечи, у которых уже есть своя модель (например, предметы ItemsAdder), не затрагиваются.
+#
+# Поля:
+#   name        — название в меню
+#   item        — откуда брать модель (форматы предметов описаны в config.yml)
+#   icon        — иконка в меню; если не указана, берётся item
+#   lore        — описание в меню
+#   permission  — право доступа; по умолчанию applecosmetic.sword.<id>,
+#                 пустая строка "" делает облик доступным всем
+#
+# Ниже — облики из обычных предметов Minecraft, они работают без ресурспака.
+# Чтобы подключить свои модели, замените item:
+#   item: "itemsadder:mypack:ice_sword"
+#   item: "nexo:ice_sword"
+#   item: "model:mypack:ice_sword"
+#   item: "PAPER:1001"
+
+items:
+  trident:
+    name: "<gradient:#2af5d0:#2a7fff>Трезубец Посейдона</gradient>"
+    item: TRIDENT
+    lore:
+      - "<gray>Меч принимает облик морского трезубца."
+
+  blaze:
+    name: "<gradient:#ffb347:#ff5f1f>Пылающий стержень</gradient>"
+    item: BLAZE_ROD
+    lore:
+      - "<gray>Раскалённый стержень прямиком из Незера."
+
+  breeze:
+    name: "<gradient:#cfe9ff:#8fb8ff>Жезл ветров</gradient>"
+    item: BREEZE_ROD
+    lore:
+      - "<gray>Лёгкий, как порыв ветра."
+
+  light:
+    name: "<gradient:#ffffff:#ffe9a8>Клинок света</gradient>"
+    item: END_ROD
+    lore:
+      - "<gray>Сияющий стержень из городов Края."
+
+  bone:
+    name: "<gradient:#f2efe4:#bdb7a4>Костяной тесак</gradient>"
+    item: BONE
+    lore:
+      - "<gray>Трофей с поверженного скелета."
+
+  amethyst:
+    name: "<gradient:#d39bff:#8a4dff>Аметистовый осколок</gradient>"
+    item: AMETHYST_SHARD
+    lore:
+      - "<gray>Острый кристалл из глубин жеоды."
+
+  golden:
+    name: "<gradient:#ffe259:#ffa751>Золотой клинок</gradient>"
+    item: GOLDEN_SWORD
+    lore:
+      - "<gray>Любой меч блестит, как золотой."
+
+  netherite:
+    name: "<gradient:#b9a6c2:#7d6f8a>Клинок преисподней</gradient>"
+    item: NETHERITE_SWORD
+    lore:
+      - "<gray>Любой меч выглядит незеритовым."
+
+  spear:
+    name: "<gradient:#7de8ff:#4d9dff>Алмазное копьё</gradient>"
+    item: DIAMOND_SPEAR
+    lore:
+      - "<gray>Оружие всадников."
+
+  fish:
+    name: "<gradient:#ffcf99:#d98b4a>Рыба-меч</gradient>"
+    item: COD
+    lore:
+      - "<gray>Свежая. Бьёт больно."

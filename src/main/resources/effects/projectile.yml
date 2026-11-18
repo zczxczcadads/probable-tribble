@@ -1,0 +1,123 @@
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                AppleCosmetic — эффекты снарядов                    ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# След тянется за стрелами и другими снарядами игрока, пока они летят.
+# Список снарядов задаётся в config.yml → effects.projectile.types.
+#
+# Поля эффекта:
+#   name        — название в меню
+#   icon        — иконка в меню (форматы предметов описаны в config.yml)
+#   lore        — описание в меню
+#   permission  — право доступа; по умолчанию applecosmetic.projectile.<id>,
+#                 пустая строка "" делает эффект доступным всем
+#   trail       — настройки следа
+#
+# Параметры следа:
+#   particle    — частица: https://jd.papermc.io/paper/1.21.11/org/bukkit/Particle.html
+#   amount      — частиц в каждой точке следа
+#   spread      — разброс частиц (в блоках)
+#   speed       — скорость разлёта частиц
+#   spiral      — радиус спирали вокруг траектории; 0 — прямой след
+#   color       — цвет "#RRGGBB" для цветных частиц (DUST и подобных)
+#   size        — размер частиц DUST (от 0.1 до 4)
+#   rainbow     — true: радужная окраска цветных частиц
+#   material    — блок или предмет для BLOCK, ITEM, FALLING_DUST
+
+effects:
+  flame:
+    name: "<gradient:#ffb347:#ff5f1f>Огненный след</gradient>"
+    icon: BLAZE_POWDER
+    lore:
+      - "<gray>Стрела оставляет языки пламени."
+    trail: { particle: FLAME, amount: 2, spread: 0.03, speed: 0.01 }
+
+  soul_flame:
+    name: "<gradient:#7df9ff:#3aa6b9>Пламя душ</gradient>"
+    icon: SOUL_TORCH
+    lore:
+      - "<gray>Холодный голубой огонь."
+    trail: { particle: SOUL_FIRE_FLAME, amount: 2, spread: 0.03, speed: 0.01 }
+
+  copper_flame:
+    name: "<gradient:#a8ff78:#3bb78f>Медное пламя</gradient>"
+    icon: COPPER_TORCH
+    lore:
+      - "<gray>Зелёный огонь медного факела."
+    trail: { particle: COPPER_FIRE_FLAME, amount: 2, spread: 0.03, speed: 0.01 }
+
+  love:
+    name: "<gradient:#ff8fab:#ff2e4d>Стрела амура</gradient>"
+    icon: PINK_TULIP
+    lore:
+      - "<gray>Сердечки летят вслед за стрелой."
+    trail: { particle: HEART, amount: 1, spread: 0.1 }
+
+  melody:
+    name: "<gradient:#a8ff78:#78ffd6>Музыкальная стрела</gradient>"
+    icon: NOTE_BLOCK
+    lore:
+      - "<gray>За стрелой тянутся ноты."
+    trail: { particle: NOTE, amount: 1, spread: 0.1, speed: 1.0 }
+
+  rainbow:
+    name: "<rainbow>Радужный след</rainbow>"
+    icon: PRISMARINE_CRYSTALS
+    lore:
+      - "<gray>След переливается всеми цветами."
+    trail: { particle: DUST, rainbow: true, size: 1.3, amount: 1, spread: 0.02 }
+
+  frost:
+    name: "<gradient:#e0f7ff:#7de8ff>Ледяной след</gradient>"
+    icon: SNOWBALL
+    lore:
+      - "<gray>Снежинки кружат за стрелой."
+    trail: { particle: SNOWFLAKE, amount: 2, spread: 0.05, speed: 0.01 }
+
+  stars:
+    name: "<gradient:#ffffff:#ffe9a8>Звёздная спираль</gradient>"
+    icon: NETHER_STAR
+    lore:
+      - "<gray>Искры закручиваются вокруг стрелы."
+    trail: { particle: END_ROD, amount: 1, spread: 0.0, spiral: 0.25 }
+
+  slime:
+    name: "<gradient:#a8ff78:#56ab2f>Слизневый след</gradient>"
+    icon: SLIME_BALL
+    lore:
+      - "<gray>Липко, зато заметно."
+    trail: { particle: ITEM_SLIME, amount: 2, spread: 0.05 }
+
+  sakura:
+    name: "<gradient:#ffd1dc:#ff8fab>Лепестки сакуры</gradient>"
+    icon: PINK_PETALS
+    lore:
+      - "<gray>Лепестки осыпаются вдоль пути стрелы."
+    trail: { particle: CHERRY_LEAVES, amount: 1, spread: 0.08 }
+
+  witch:
+    name: "<gradient:#c77dff:#5a189a>Ведьмина пыльца</gradient>"
+    icon: DRAGON_BREATH
+    lore:
+      - "<gray>Фиолетовые искры колдовства."
+    trail: { particle: WITCH, amount: 2, spread: 0.05 }
+
+  runes:
+    name: "<gradient:#d39bff:#7df9ff>Древние руны</gradient>"
+    icon: ENCHANTING_TABLE
+    lore:
+      - "<gray>Символы стола зачарований."
+    trail: { particle: ENCHANT, amount: 3, spread: 0.1, speed: 0.5 }
+
+  shock:
+    name: "<gradient:#fff59d:#ffd54f>Грозовой разряд</gradient>"
+    icon: LIGHTNING_ROD
+    lore:
+      - "<gray>Стрела искрит в полёте."
+    trail: { particle: ELECTRIC_SPARK, amount: 2, spread: 0.05, speed: 0.1 }
+
+  emerald:
+    name: "<gradient:#a8ff78:#17c964>Изумрудная пыль</gradient>"
+    icon: EMERALD
+    lore:
+      - "<gray>Зелёные искры удачи."
+    trail: { particle: HAPPY_VILLAGER, amount: 1, spread: 0.08, spiral: 0.2 }

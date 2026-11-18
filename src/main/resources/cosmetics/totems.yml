@@ -1,0 +1,82 @@
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                 AppleCosmetic — облики тотемов                     ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# Выбранный облик меняет внешний вид тотемов бессмертия в инвентаре игрока
+# и анимацию на экране, когда тотем срабатывает. Сам тотем действует как обычно.
+# Тотемы, у которых уже есть своя модель (например, предметы ItemsAdder), не затрагиваются.
+#
+# Поля:
+#   name        — название в меню
+#   item        — откуда брать модель (форматы предметов описаны в config.yml)
+#   icon        — иконка в меню; если не указана, берётся item
+#   lore        — описание в меню
+#   permission  — право доступа; по умолчанию applecosmetic.totem.<id>,
+#                 пустая строка "" делает облик доступным всем
+#
+# Ниже — облики из обычных предметов Minecraft, они работают без ресурспака.
+# Чтобы подключить свои модели, замените item:
+#   item: "itemsadder:mypack:angel_totem"
+#   item: "nexo:angel_totem"
+#   item: "model:mypack:angel_totem"
+#   item: "PAPER:3001"
+
+items:
+  apple:
+    name: "<gradient:#ffe259:#ff8c42>Яблоко бессмертия</gradient>"
+    item: ENCHANTED_GOLDEN_APPLE
+    lore:
+      - "<gray>Зачарованное яблоко вместо тотема."
+
+  star:
+    name: "<gradient:#ffffff:#c9d6ff>Звезда Незера</gradient>"
+    item: NETHER_STAR
+    lore:
+      - "<gray>Сияние поверженного иссушителя."
+
+  sea_heart:
+    name: "<gradient:#2af5d0:#2a7fff>Сердце моря</gradient>"
+    item: HEART_OF_THE_SEA
+    lore:
+      - "<gray>Хранит силу океана."
+
+  dragon_egg:
+    name: "<gradient:#d39bff:#8a4dff>Яйцо дракона</gradient>"
+    item: DRAGON_EGG
+    lore:
+      - "<gray>Главный трофей Края."
+
+  ender_eye:
+    name: "<gradient:#a8ff78:#3bb78f>Око Края</gradient>"
+    item: ENDER_EYE
+    lore:
+      - "<gray>Оно видит, когда вам грозит опасность."
+
+  crystal:
+    name: "<gradient:#ffb3e6:#c77dff>Кристалл Края</gradient>"
+    item: END_CRYSTAL
+    lore:
+      - "<gray>Исцеляет не только драконов."
+
+  wither_skull:
+    name: "<gradient:#b9a6c2:#7d6f8a>Череп иссушителя</gradient>"
+    item: WITHER_SKELETON_SKULL
+    lore:
+      - "<gray>Смерть отступает перед смертью."
+
+  clock:
+    name: "<gradient:#ffe259:#ffa751>Хранитель времени</gradient>"
+    item: CLOCK
+    lore:
+      - "<gray>Отматывает последний миг назад."
+
+  diamond:
+    name: "<gradient:#7de8ff:#4d9dff>Чистый алмаз</gradient>"
+    item: DIAMOND
+    lore:
+      - "<gray>Дороже жизни ничего нет."
+
+  cake:
+    name: "<gradient:#ffd1dc:#ff9aa2>Праздничный торт</gradient>"
+    item: CAKE
+    lore:
+      - "<gray>Второй день рождения."

@@ -1,0 +1,228 @@
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                          AppleCosmetic                             ║
+# ║                       Основные настройки                           ║
+# ╚════════════════════════════════════════════════════════════════════╝
+#
+# Косметика настраивается в отдельных файлах:
+#   cosmetics/swords.yml      — облики мечей
+#   cosmetics/pickaxes.yml    — облики кирок
+#   cosmetics/totems.yml      — облики тотемов
+#   cosmetics/hats.yml        — шляпы
+#   effects/kill.yml          — эффекты убийства
+#   effects/crit.yml          — эффекты критического удара
+#   effects/projectile.yml    — эффекты снарядов
+#   effects/death.yml         — эффекты смерти
+# Сообщения — в messages.yml. После правок выполните /cosmetics reload.
+#
+# ── Текст ───────────────────────────────────────────────────────────────
+# Поддерживаются формат MiniMessage (<red>, <bold>, <#ff8800>,
+# <gradient:#ff0000:#ffaa00>текст</gradient>) и привычные коды (&c, &l, &#ff8800).
+#
+# ── Предметы ────────────────────────────────────────────────────────────
+# В полях icon и item во всех файлах можно указать:
+#   DIAMOND_SWORD                      — обычный предмет Minecraft
+#   PAPER:1001                         — предмет с CustomModelData
+#   model:пространство:путь            — модель из ресурспака напрямую (компонент item_model)
+#   itemsadder:пространство:предмет    — предмет ItemsAdder
+#   nexo:предмет                       — предмет Nexo
+#   oraxen:предмет                     — предмет Oraxen
+#   craftengine:пространство:предмет   — предмет CraftEngine
+#   head:текстура                      — голова с текстурой (значение Value или хэш с textures.minecraft.net)
+#   bettermodel:модель                 — только в поле item у шляп: модель BetterModel на игроке
+#
+# ── Права ───────────────────────────────────────────────────────────────
+#   applecosmetic.use                    — открывать меню (есть у всех)
+#   applecosmetic.admin                  — /cosmetics reload
+#   applecosmetic.all                    — вся косметика
+#   applecosmetic.<категория>.*          — вся косметика категории
+#   applecosmetic.<категория>.<id>       — одна позиция
+# Категории: sword, pickaxe, totem, hat, kill, crit, projectile, death.
+
+settings:
+  # Проверять права на косметику. false — вся косметика доступна всем игрокам.
+  require-permissions: true
+
+# Облики мечей, кирок и тотемов.
+# Облик меняет только модель предметов в инвентаре владельца. Когда предмет покидает
+# инвентарь (выброшен, положен в сундук, игрок вышел), к нему возвращается обычный вид.
+skins:
+  # Как часто полностью перепроверять инвентари, в тиках (20 тиков = 1 секунда).
+  # Новые предметы получают облик сразу, эта проверка — подстраховка.
+  sync-interval-ticks: 20
+
+# Шляпы.
+# Шляпа видна вместо шлема, а настоящий шлем остаётся надетым и защищает как обычно.
+hats:
+  # Показывать шляпу самому игроку (вид от третьего лица и кукла в инвентаре).
+  # При этом в слоте шлема игрок видит шляпу, а не свой шлем.
+  show-to-self: true
+  # Прятать шляпу, пока игрок невидим.
+  hide-when-invisible: true
+  # Показывать шляпу, только если на игроке нет шлема.
+  only-without-helmet: false
+  # Как часто повторно отправлять шляпу игрокам поблизости, в тиках.
+  refresh-interval-ticks: 40
+
+effects:
+  # Эффекты убийства: при убийстве кого их показывать.
+  kill:
+    players: true
+    mobs: false
+  # Эффекты критического удара: при ударе по кому их показывать.
+  crit:
+    players: true
+    mobs: true
+  # Эффекты снарядов.
+  projectile:
+    # За какими снарядами тянется след.
+    types:
+      - ARROW
+      - SPECTRAL_ARROW
+      - TRIDENT
+      - SNOWBALL
+      - EGG
+      - ENDER_PEARL
+      - WIND_CHARGE
+    # Сколько тиков след может тянуться за одним снарядом.
+    max-ticks: 200
+
+# ── Меню /cosmetics ──────────────────────────────────────────────────────
+# Слоты считаются с нуля: первый ряд — 0–8, второй — 9–17 и так далее.
+menu:
+  # Предмет, которым заполняются пустые слоты. Оставьте "", чтобы отключить.
+  filler: BLACK_STAINED_GLASS_PANE
+  # Подсвечивать выбранную косметику сиянием зачарования.
+  selected-glint: true
+
+  # Звуки меню. name — ключ звука (подходят и звуки из ресурспака); "" — без звука.
+  sounds:
+    click: { name: ui.button.click, volume: 0.5, pitch: 1.0 }
+    select: { name: entity.experience_orb.pickup, volume: 0.7, pitch: 1.2 }
+    unselect: { name: item.armor.equip_leather, volume: 0.8, pitch: 0.8 }
+    deny: { name: entity.villager.no, volume: 0.7, pitch: 1.0 }
+
+  # Главное окно.
+  main:
+    title: "<dark_gray>Косметика"
+    rows: 5
+    # Строки, которые добавляются к описанию каждой категории.
+    # {selected} — выбранная косметика, {owned} — сколько открыто, {total} — сколько всего.
+    category-lore:
+      - ""
+      - "<gray>Выбрано: <white>{selected}"
+      - "<gray>Открыто: <white>{owned}<dark_gray>/<white>{total}"
+      - ""
+      - "<yellow>▶ Нажмите, чтобы открыть"
+    # title — название категории в заголовке окна и сообщениях.
+    categories:
+      sword:
+        slot: 10
+        icon: DIAMOND_SWORD
+        title: "Мечи"
+        name: "<gradient:#7de8ff:#4d9dff><bold>Мечи</bold></gradient>"
+        lore:
+          - "<gray>Облики для ваших мечей."
+      pickaxe:
+        slot: 12
+        icon: DIAMOND_PICKAXE
+        title: "Кирки"
+        name: "<gradient:#ffe259:#ffa751><bold>Кирки</bold></gradient>"
+        lore:
+          - "<gray>Облики для ваших кирок."
+      totem:
+        slot: 14
+        icon: TOTEM_OF_UNDYING
+        title: "Тотемы"
+        name: "<gradient:#a8ff78:#78ffd6><bold>Тотемы</bold></gradient>"
+        lore:
+          - "<gray>Облики тотемов бессмертия."
+          - "<gray>Меняют и анимацию срабатывания."
+      hat:
+        slot: 16
+        icon: GOLDEN_HELMET
+        title: "Шляпы"
+        name: "<gradient:#f6d365:#fda085><bold>Шляпы</bold></gradient>"
+        lore:
+          - "<gray>Головные уборы поверх шлема."
+      kill:
+        slot: 28
+        icon: WITHER_SKELETON_SKULL
+        title: "Эффекты убийства"
+        name: "<gradient:#ff5f6d:#ffc371><bold>Эффекты убийства</bold></gradient>"
+        lore:
+          - "<gray>Проигрываются на месте гибели"
+          - "<gray>убитого вами противника."
+      crit:
+        slot: 30
+        icon: BLAZE_POWDER
+        title: "Эффекты крита"
+        name: "<gradient:#f7971e:#ffd200><bold>Эффекты критического удара</bold></gradient>"
+        lore:
+          - "<gray>Проигрываются, когда вы наносите"
+          - "<gray>критический удар."
+      projectile:
+        slot: 32
+        icon: BOW
+        title: "Эффекты снарядов"
+        name: "<gradient:#43e97b:#38f9d7><bold>Эффекты снарядов</bold></gradient>"
+        lore:
+          - "<gray>След за вашими стрелами"
+          - "<gray>и другими снарядами."
+      death:
+        slot: 34
+        icon: SKELETON_SKULL
+        title: "Эффекты смерти"
+        name: "<gradient:#b993d6:#8ca6db><bold>Эффекты смерти</bold></gradient>"
+        lore:
+          - "<gray>Проигрываются на месте"
+          - "<gray>вашей гибели."
+    # Кнопка «снять всё».
+    reset:
+      slot: 40
+      icon: BARRIER
+      name: "<red>Снять всю косметику"
+      lore:
+        - "<gray>Убирает облики, шляпу и все эффекты."
+
+  # Окно категории.
+  category:
+    # {category} — название категории, {page} и {pages} — номер страницы и их количество.
+    title: "<dark_gray>{category} <gray>• {page}/{pages}"
+    rows: 5
+    # Слоты для косметики; если позиций больше, появляются страницы.
+    item-slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+    back:
+      slot: 36
+      icon: ARROW
+      name: "<yellow>← Назад"
+      lore:
+        - "<gray>Вернуться к категориям."
+    previous:
+      slot: 39
+      icon: SPECTRAL_ARROW
+      name: "<yellow>« Предыдущая страница"
+    unequip:
+      slot: 40
+      icon: BARRIER
+      name: "<red>Снять"
+      lore:
+        - "<gray>Сейчас выбрано: <white>{selected}"
+    next:
+      slot: 41
+      icon: SPECTRAL_ARROW
+      name: "<yellow>Следующая страница »"
+    # Строки состояния, которые добавляются к описанию косметики.
+    status:
+      selected:
+        - ""
+        - "<green>✔ Выбрано"
+        - "<gray>Нажмите, чтобы снять"
+      available:
+        - ""
+        - "<yellow>▶ Нажмите, чтобы выбрать"
+      locked:
+        - ""
+        - "<red>✖ Недоступно"
+      # Добавляется к эффектам: правая кнопка показывает эффект только вам.
+      preview:
+        - "<aqua>ПКМ <gray>— предпросмотр"

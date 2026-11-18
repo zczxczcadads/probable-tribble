@@ -1,0 +1,82 @@
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                  AppleCosmetic — облики кирок                      ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# Выбранный облик меняет внешний вид всех кирок в инвентаре игрока.
+# Скорость добычи, чары и прочность остаются прежними — меняется только модель.
+# Кирки, у которых уже есть своя модель (например, предметы ItemsAdder), не затрагиваются.
+#
+# Поля:
+#   name        — название в меню
+#   item        — откуда брать модель (форматы предметов описаны в config.yml)
+#   icon        — иконка в меню; если не указана, берётся item
+#   lore        — описание в меню
+#   permission  — право доступа; по умолчанию applecosmetic.pickaxe.<id>,
+#                 пустая строка "" делает облик доступным всем
+#
+# Ниже — облики из обычных предметов Minecraft, они работают без ресурспака.
+# Чтобы подключить свои модели, замените item:
+#   item: "itemsadder:mypack:crystal_pickaxe"
+#   item: "nexo:crystal_pickaxe"
+#   item: "model:mypack:crystal_pickaxe"
+#   item: "PAPER:2001"
+
+items:
+  hammer:
+    name: "<gradient:#c9d6ff:#8f9bb3>Молот горняка</gradient>"
+    item: MACE
+    lore:
+      - "<gray>Камень крошится от одного вида."
+
+  scythe:
+    name: "<gradient:#b9a6c2:#7d6f8a>Коса жнеца</gradient>"
+    item: NETHERITE_HOE
+    lore:
+      - "<gray>Собирает урожай руды."
+
+  golden:
+    name: "<gradient:#ffe259:#ffa751>Золотая кирка</gradient>"
+    item: GOLDEN_PICKAXE
+    lore:
+      - "<gray>Любая кирка блестит, как золотая."
+
+  netherite:
+    name: "<gradient:#b9a6c2:#7d6f8a>Незеритовая кирка</gradient>"
+    item: NETHERITE_PICKAXE
+    lore:
+      - "<gray>Любая кирка выглядит незеритовой."
+
+  brush:
+    name: "<gradient:#f6d365:#fda085>Кисть археолога</gradient>"
+    item: BRUSH
+    lore:
+      - "<gray>Аккуратная работа с породой."
+
+  key:
+    name: "<gradient:#ffd89b:#f0a868>Ключ от сокровищницы</gradient>"
+    item: TRIAL_KEY
+    lore:
+      - "<gray>Открывает путь к любым залежам."
+
+  torch:
+    name: "<gradient:#ffe29f:#ff9f43>Шахтёрский факел</gradient>"
+    item: TORCH
+    lore:
+      - "<gray>Светит и копает одновременно."
+
+  shovel:
+    name: "<gradient:#7de8ff:#4d9dff>Сапёрная лопата</gradient>"
+    item: DIAMOND_SHOVEL
+    lore:
+      - "<gray>Копать можно и ей."
+
+  axe:
+    name: "<gradient:#a8ff78:#56ab2f>Секира дровосека</gradient>"
+    item: DIAMOND_AXE
+    lore:
+      - "<gray>Рубит камень не хуже дерева."
+
+  lightning_rod:
+    name: "<gradient:#ffb88c:#de6262>Громоотвод</gradient>"
+    item: LIGHTNING_ROD
+    lore:
+      - "<gray>Медный стержень на все случаи жизни."

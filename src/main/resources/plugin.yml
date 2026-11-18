@@ -1,0 +1,23 @@
+name: AppleCosmetic
+version: '${project.version}'
+main: ru.applecosmetic.AppleCosmeticPlugin
+api-version: '1.21.11'
+description: Косметика — облики мечей, кирок и тотемов, шляпы и эффекты
+softdepend: [ItemsAdder, Nexo, Oraxen, CraftEngine, BetterModel]
+
+commands:
+  cosmetics:
+    description: Открыть меню косметики
+    usage: /<command> [reload]
+    aliases: [cosmetic, cosm, косметика]
+
+permissions:
+  applecosmetic.use:
+    description: Открывать меню косметики
+    default: true
+  applecosmetic.admin:
+    description: Перезагружать конфигурацию (/cosmetics reload)
+    default: op
+  applecosmetic.all:
+    description: Доступ ко всей косметике
+    default: op

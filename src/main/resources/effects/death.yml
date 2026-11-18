@@ -1,0 +1,164 @@
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                 AppleCosmetic — эффекты смерти                     ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# Эффект проигрывается на месте гибели самого игрока.
+#
+# Поля эффекта:
+#   name        — название в меню
+#   icon        — иконка в меню (форматы предметов описаны в config.yml)
+#   lore        — описание в меню
+#   permission  — право доступа; по умолчанию applecosmetic.death.<id>,
+#                 пустая строка "" делает эффект доступным всем
+#   sounds      — звуки: { name: ключ, volume: громкость, pitch: высота }
+#   lightning   — true: удар молнии (только вспышка, без урона и огня)
+#   firework    — фейерверк без урона: { type, colors, fade, flicker, trail }
+#   layers      — слои частиц
+#
+# Параметры слоёв (animation, particle, amount, radius, height, y-offset, duration,
+# delay, speed, color, size, rainbow, material) подробно описаны в effects/kill.yml.
+
+effects:
+  ghost:
+    name: "<gradient:#ffffff:#b8c6db>Призрак</gradient>"
+    icon: WHITE_WOOL
+    lore:
+      - "<gray>Ваш дух покидает тело."
+    sounds:
+      - { name: entity.vex.death, volume: 1.0, pitch: 0.7 }
+    layers:
+      - { animation: COLUMN, particle: WHITE_SMOKE, amount: 8, radius: 0.3, height: 2.2, duration: 30 }
+      - { animation: HELIX, particle: CLOUD, amount: 1, radius: 0.5, height: 2.6, duration: 30 }
+
+  smoke_bomb:
+    name: "<gradient:#b8c6db:#6b7a8f>Дымовая завеса</gradient>"
+    icon: GUNPOWDER
+    lore:
+      - "<gray>Исчезнуть эффектно — тоже искусство."
+    sounds:
+      - { name: block.fire.extinguish, volume: 1.0, pitch: 0.8 }
+    layers:
+      - { animation: BURST, particle: LARGE_SMOKE, amount: 60, radius: 0.6, speed: 0.05 }
+      - { animation: BURST, particle: CAMPFIRE_COSY_SMOKE, amount: 8, radius: 0.4, speed: 0.02 }
+
+  blood_pool:
+    name: "<gradient:#ff4b4b:#a80000>Лужа крови</gradient>"
+    icon: REDSTONE
+    lore:
+      - "<gray>Мрачная память о поражении."
+    layers:
+      - { animation: BURST, particle: BLOCK, material: REDSTONE_BLOCK, amount: 60, radius: 0.35, speed: 0.15 }
+      - { animation: RING, particle: DUST, color: "#b00000", size: 1.4, amount: 20, radius: 1.4, duration: 14 }
+
+  soul_release:
+    name: "<gradient:#7df9ff:#3aa6b9>Освобождение души</gradient>"
+    icon: SOUL_LANTERN
+    lore:
+      - "<gray>Душа отправляется в лучший мир."
+    sounds:
+      - { name: particle.soul_escape, volume: 2.0, pitch: 1.0 }
+    layers:
+      - { animation: HELIX, particle: SOUL, radius: 0.6, height: 2.6, duration: 30 }
+
+  grave:
+    name: "<gradient:#d7d2cc:#8e9eab>Могильный крест</gradient>"
+    icon: COBBLESTONE_WALL
+    lore:
+      - "<gray>Покойся с миром."
+    sounds:
+      - { name: block.stone.place, volume: 1.0, pitch: 0.6 }
+    layers:
+      - { animation: CROSS, particle: DUST, color: "#aab2bd", size: 1.3, height: 2.2, radius: 0.6, duration: 50 }
+      - { animation: RING, particle: ASH, amount: 30, radius: 1.2, duration: 20 }
+
+  ender:
+    name: "<gradient:#c77dff:#5a189a>Побег в Край</gradient>"
+    icon: ENDER_PEARL
+    lore:
+      - "<gray>Вы не умерли — вы телепортировались."
+    sounds:
+      - { name: entity.enderman.teleport, volume: 1.0, pitch: 1.0 }
+    layers:
+      - { animation: BURST, particle: REVERSE_PORTAL, amount: 100, radius: 0.3, speed: 0.6 }
+      - { animation: BURST, particle: PORTAL, amount: 60, radius: 0.3, speed: 1.0 }
+
+  self_destruct:
+    name: "<gradient:#ff6b6b:#ffa751>Самоуничтожение</gradient>"
+    icon: TNT
+    lore:
+      - "<gray>Уйти, громко хлопнув дверью."
+    sounds:
+      - { name: entity.generic.explode, volume: 1.0, pitch: 1.3 }
+    layers:
+      - { animation: BURST, particle: EXPLOSION, amount: 4, radius: 0.6, speed: 0.0 }
+      - { animation: BURST, particle: FLAME, amount: 40, radius: 0.3, speed: 0.15 }
+
+  farewell:
+    name: "<gradient:#4dd2ff:#c77dff>Прощальный салют</gradient>"
+    icon: FIREWORK_STAR
+    lore:
+      - "<gray>Красивый финал."
+    firework: { type: STAR, colors: ["#4dd2ff", "#ffffff"], fade: ["#b44dff"], flicker: false, trail: true }
+
+  wrath:
+    name: "<gradient:#fff59d:#ffd54f>Гнев небес</gradient>"
+    icon: LIGHTNING_ROD
+    lore:
+      - "<gray>В место вашей гибели бьёт молния."
+    lightning: true
+    layers:
+      - { animation: RING, particle: LARGE_SMOKE, amount: 24, radius: 2.0, duration: 10 }
+
+  ascension:
+    name: "<gradient:#ffffff:#ffe9a8>Вознесение</gradient>"
+    icon: FEATHER
+    lore:
+      - "<gray>Свет уносит вас к небу."
+    sounds:
+      - { name: block.beacon.activate, volume: 1.0, pitch: 1.4 }
+    layers:
+      - { animation: HELIX, particle: END_ROD, radius: 0.7, height: 3.0, duration: 30 }
+      - { animation: COLUMN, particle: FIREWORK, amount: 4, radius: 0.15, height: 3.0, duration: 30 }
+
+  splash:
+    name: "<gradient:#7de8ff:#2a7fff>Всплеск</gradient>"
+    icon: WATER_BUCKET
+    lore:
+      - "<gray>От вас осталось мокрое место."
+    sounds:
+      - { name: entity.generic.splash, volume: 1.0, pitch: 1.0 }
+    layers:
+      - { animation: BURST, particle: SPLASH, amount: 100, radius: 0.5, speed: 0.3 }
+      - { animation: FOUNTAIN, particle: FALLING_WATER, amount: 8, radius: 0.4, speed: 0.3, duration: 10 }
+
+  sculk:
+    name: "<gradient:#4dd2ff:#1b6ca8>Вопль скалка</gradient>"
+    icon: SCULK_SHRIEKER
+    lore:
+      - "<gray>Глубинная тьма помнит о вас."
+    sounds:
+      - { name: block.sculk_shrieker.shriek, volume: 0.6, pitch: 1.0 }
+    layers:
+      - { animation: BURST, particle: SCULK_SOUL, amount: 30, radius: 0.4, speed: 0.08 }
+      - { animation: BURST, particle: SHRIEK, amount: 1, radius: 0.0, speed: 0.0, y-offset: 0.5 }
+
+  bones:
+    name: "<gradient:#f2efe4:#bdb7a4>Груда костей</gradient>"
+    icon: BONE
+    lore:
+      - "<gray>Всё, что от вас осталось."
+      - "<dark_gray>Подобрать их нельзя."
+    sounds:
+      - { name: entity.skeleton.death, volume: 1.0, pitch: 0.8 }
+    layers:
+      - { animation: FOUNTAIN, particle: ITEM, material: BONE, amount: 4, radius: 0.35, speed: 0.35, duration: 10 }
+
+  confetti:
+    name: "<rainbow>Конфетти</rainbow>"
+    icon: CAKE
+    lore:
+      - "<gray>Проигрывать тоже надо весело."
+    sounds:
+      - { name: entity.firework_rocket.twinkle, volume: 1.0, pitch: 1.2 }
+    layers:
+      - { animation: BURST, particle: DUST, rainbow: true, size: 1.4, amount: 80, radius: 0.8, speed: 0.0 }
+      - { animation: RAIN, particle: DUST, rainbow: true, size: 1.0, amount: 5, radius: 1.2, height: 2.5, duration: 20 }

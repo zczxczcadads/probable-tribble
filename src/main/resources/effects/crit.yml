@@ -1,0 +1,143 @@
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║           AppleCosmetic — эффекты критического удара               ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# Эффект проигрывается на цели, когда игрок наносит критический удар
+# (удар в падении). По кому он срабатывает, задаётся в config.yml → effects.crit.
+#
+# Поля эффекта:
+#   name        — название в меню
+#   icon        — иконка в меню (форматы предметов описаны в config.yml)
+#   lore        — описание в меню
+#   permission  — право доступа; по умолчанию applecosmetic.crit.<id>,
+#                 пустая строка "" делает эффект доступным всем
+#   sounds      — звуки: { name: ключ, volume: громкость, pitch: высота }
+#   layers      — слои частиц
+#
+# Параметры слоёв (animation, particle, amount, radius, height, y-offset, duration,
+# delay, speed, color, size, rainbow, material) подробно описаны в effects/kill.yml.
+# Здесь уместны короткие эффекты: критические удары случаются часто.
+
+effects:
+  magic:
+    name: "<gradient:#7df9ff:#4d9dff>Магический удар</gradient>"
+    icon: ENCHANTED_BOOK
+    lore:
+      - "<gray>Искры зачарованного клинка."
+    layers:
+      - { animation: BURST, particle: ENCHANTED_HIT, amount: 25, radius: 0.3, speed: 0.5 }
+
+  flame:
+    name: "<gradient:#ffb347:#ff5f1f>Обжигающий удар</gradient>"
+    icon: FIRE_CHARGE
+    lore:
+      - "<gray>Удар оставляет языки пламени."
+    layers:
+      - { animation: BURST, particle: FLAME, amount: 20, radius: 0.3, speed: 0.08 }
+      - { animation: BURST, particle: LAVA, amount: 4, radius: 0.2 }
+
+  frost:
+    name: "<gradient:#e0f7ff:#7de8ff>Морозный удар</gradient>"
+    icon: SNOWBALL
+    lore:
+      - "<gray>Пробирает до костей."
+    sounds:
+      - { name: block.powder_snow.break, volume: 1.0, pitch: 1.2 }
+    layers:
+      - { animation: BURST, particle: SNOWFLAKE, amount: 25, radius: 0.35, speed: 0.08 }
+
+  love:
+    name: "<gradient:#ff8fab:#ff2e4d>Удар любви</gradient>"
+    icon: PINK_TULIP
+    lore:
+      - "<gray>Бьёт — значит любит."
+    layers:
+      - { animation: BURST, particle: HEART, amount: 6, radius: 0.45, speed: 0.0 }
+
+  shock:
+    name: "<gradient:#fff59d:#ffd54f>Электрошок</gradient>"
+    icon: COPPER_INGOT
+    lore:
+      - "<gray>Разряд на кончике клинка."
+    layers:
+      - { animation: BURST, particle: ELECTRIC_SPARK, amount: 30, radius: 0.3, speed: 0.5 }
+
+  soul:
+    name: "<gradient:#7df9ff:#3aa6b9>Удар души</gradient>"
+    icon: SOUL_TORCH
+    lore:
+      - "<gray>Холодное пламя душ."
+    layers:
+      - { animation: BURST, particle: SOUL_FIRE_FLAME, amount: 18, radius: 0.3, speed: 0.06 }
+      - { animation: BURST, particle: SOUL, amount: 4, radius: 0.3, speed: 0.03 }
+
+  melody:
+    name: "<gradient:#a8ff78:#78ffd6>Мелодия боя</gradient>"
+    icon: NOTE_BLOCK
+    lore:
+      - "<gray>Каждый удар — в ноту."
+    sounds:
+      - { name: block.note_block.bell, volume: 0.8, pitch: 1.5 }
+    layers:
+      - { animation: BURST, particle: NOTE, amount: 8, radius: 0.5, speed: 1.0 }
+
+  slime:
+    name: "<gradient:#a8ff78:#56ab2f>Слизневый шлепок</gradient>"
+    icon: SLIME_BALL
+    lore:
+      - "<gray>Звучит так же, как выглядит."
+    sounds:
+      - { name: entity.slime.squish, volume: 0.8, pitch: 1.2 }
+    layers:
+      - { animation: BURST, particle: ITEM_SLIME, amount: 30, radius: 0.3, speed: 0.1 }
+
+  blood:
+    name: "<gradient:#ff4b4b:#a80000>Кровавый удар</gradient>"
+    icon: REDSTONE
+    lore:
+      - "<gray>Без лишних сантиментов."
+    layers:
+      - { animation: BURST, particle: BLOCK, material: REDSTONE_BLOCK, amount: 40, radius: 0.3, speed: 0.1 }
+
+  stars:
+    name: "<gradient:#ffffff:#ffe9a8>Звёздный удар</gradient>"
+    icon: NETHER_STAR
+    lore:
+      - "<gray>Искры летят во все стороны."
+    layers:
+      - { animation: BURST, particle: END_ROD, amount: 20, radius: 0.2, speed: 0.12 }
+
+  ink:
+    name: "<gradient:#b8c6db:#6b7a8f>Чернильное пятно</gradient>"
+    icon: INK_SAC
+    lore:
+      - "<gray>Клякса на репутации врага."
+    sounds:
+      - { name: entity.squid.squirt, volume: 0.8, pitch: 1.2 }
+    layers:
+      - { animation: BURST, particle: SQUID_INK, amount: 20, radius: 0.3, speed: 0.08 }
+
+  rainbow:
+    name: "<rainbow>Радужный удар</rainbow>"
+    icon: PRISMARINE_CRYSTALS
+    lore:
+      - "<gray>Все цвета в одном ударе."
+    layers:
+      - { animation: SPHERE, particle: DUST, rainbow: true, size: 1.2, amount: 24, radius: 0.9, duration: 4 }
+
+  rage:
+    name: "<gradient:#ff6b6b:#c9184a>Ярость</gradient>"
+    icon: RED_DYE
+    lore:
+      - "<gray>Вы сегодня не в духе."
+    layers:
+      - { animation: BURST, particle: ANGRY_VILLAGER, amount: 5, radius: 0.5, speed: 0.0 }
+
+  sonic:
+    name: "<gradient:#4dd2ff:#1b6ca8>Звуковая волна</gradient>"
+    icon: ECHO_SHARD
+    lore:
+      - "<gray>Отголосок древних глубин."
+    sounds:
+      - { name: entity.warden.sonic_boom, volume: 0.4, pitch: 1.5 }
+    layers:
+      - { animation: BURST, particle: SONIC_BOOM, amount: 1, radius: 0.0, speed: 0.0 }

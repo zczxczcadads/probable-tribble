@@ -1,0 +1,86 @@
+# ╔════════════════════════════════════════════════════════════════════╗
+# ║                     AppleCosmetic — шляпы                          ║
+# ╚════════════════════════════════════════════════════════════════════╝
+# Шляпу видят все игроки поблизости вместо шлема владельца. Настоящий шлем
+# при этом остаётся надетым и защищает как обычно.
+#
+# Поля:
+#   name        — название в меню
+#   item        — предмет, который надевается на голову (форматы описаны в config.yml)
+#   icon        — иконка в меню; если не указана, берётся item
+#   lore        — описание в меню
+#   permission  — право доступа; по умолчанию applecosmetic.hat.<id>,
+#                 пустая строка "" делает шляпу доступной всем
+#
+# Ниже — шляпы из обычных блоков и голов Minecraft, они работают без ресурспака.
+# Чтобы подключить свои модели, замените item:
+#   item: "itemsadder:mypack:crown"
+#   item: "nexo:crown"
+#   item: "model:mypack:crown"
+#   item: "PAPER:4001"
+#   item: "head:<значение текстуры>"
+#
+# Модель BetterModel закрепляется на игроке целиком, поэтому ей нужна отдельная иконка:
+#   item: "bettermodel:crown"
+#   icon: GOLDEN_HELMET
+
+items:
+  astronaut:
+    name: "<gradient:#e0f7ff:#9fd8ff>Шлем космонавта</gradient>"
+    item: GLASS
+    lore:
+      - "<gray>К полёту готов."
+
+  jack:
+    name: "<gradient:#ffb347:#ff5f1f>Светильник Джека</gradient>"
+    item: JACK_O_LANTERN
+    lore:
+      - "<gray>Тыква, которая не мешает обзору."
+
+  dragon:
+    name: "<gradient:#d39bff:#8a4dff>Голова дракона</gradient>"
+    item: DRAGON_HEAD
+    lore:
+      - "<gray>Трофей с корабля Края."
+
+  creeper:
+    name: "<gradient:#a8ff78:#56ab2f>Маска крипера</gradient>"
+    item: CREEPER_HEAD
+    lore:
+      - "<gray>Ш-ш-ш-ш…"
+
+  wither:
+    name: "<gradient:#b9a6c2:#7d6f8a>Череп иссушителя</gradient>"
+    item: WITHER_SKELETON_SKULL
+    lore:
+      - "<gray>Мрачный привет из крепости Незера."
+
+  piglin:
+    name: "<gradient:#ffd89b:#f0a868>Маска пиглина</gradient>"
+    item: PIGLIN_HEAD
+    lore:
+      - "<gray>Свой среди пиглинов."
+
+  melon:
+    name: "<gradient:#a8ff78:#ff6b6b>Арбузная каска</gradient>"
+    item: MELON
+    lore:
+      - "<gray>Сочная защита от солнца."
+
+  tnt:
+    name: "<gradient:#ff6b6b:#ffe66d>Взрывной характер</gradient>"
+    item: TNT
+    lore:
+      - "<gray>Главное — не поджигать."
+
+  beacon:
+    name: "<gradient:#7de8ff:#b3ffab>Ходячий маяк</gradient>"
+    item: BEACON
+    lore:
+      - "<gray>Вас видно издалека."
+
+  hay:
+    name: "<gradient:#ffe259:#d4a017>Соломенная шляпа</gradient>"
+    item: HAY_BLOCK
+    lore:
+      - "<gray>Выбор лучших фермеров."
