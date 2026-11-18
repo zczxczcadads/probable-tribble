@@ -1,0 +1,55 @@
+# Модели AppleCosmetic: тотемы.
+# Файл создан tools/models/build.py вместе с моделями и текстурами этого набора.
+info:
+  namespace: applecosmetic
+items:
+  totem_angel:
+    name: "Ангел-хранитель"
+    material: TOTEM_OF_UNDYING
+    graphics:
+      model: item/totem_angel
+  totem_demon:
+    name: "Демон"
+    material: TOTEM_OF_UNDYING
+    graphics:
+      model: item/totem_demon
+  totem_frost:
+    name: "Ледяной дух"
+    material: TOTEM_OF_UNDYING
+    graphics:
+      model: item/totem_frost
+  totem_golden:
+    name: "Золотой идол"
+    material: TOTEM_OF_UNDYING
+    graphics:
+      model: item/totem_golden
+  totem_forest:
+    name: "Дух леса"
+    material: TOTEM_OF_UNDYING
+    graphics:
+      model: item/totem_forest
+  totem_ocean:
+    name: "Страж глубин"
+    material: TOTEM_OF_UNDYING
+    graphics:
+      model: item/totem_ocean
+  totem_heart:
+    name: "Крылатое сердце"
+    material: TOTEM_OF_UNDYING
+    graphics:
+      model: item/totem_heart
+  totem_skull:
+    name: "Череп"
+    material: TOTEM_OF_UNDYING
+    graphics:
+      model: item/totem_skull
+  totem_ender:
+    name: "Идол Края"
+    material: TOTEM_OF_UNDYING
+    graphics:
+      model: item/totem_ender
+  totem_cat:
+    name: "Кот удачи"
+    material: TOTEM_OF_UNDYING
+    graphics:
+      model: item/totem_cat
