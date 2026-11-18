@@ -1,0 +1,10 @@
+# Модели AppleCosmetic: кирки.
+# Файл создан tools/models/build.py вместе с моделями и текстурами этого набора.
+info:
+  namespace: applecosmetic
+items:
+  pickaxe_crystal:
+    name: "Кристальная кирка"
+    material: DIAMOND_PICKAXE
+    graphics:
+      model: item/pickaxe_crystal
