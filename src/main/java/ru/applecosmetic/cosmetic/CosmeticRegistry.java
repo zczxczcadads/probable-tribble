@@ -1,6 +1,7 @@
 package ru.applecosmetic.cosmetic;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.LinkedHashMap;
@@ -85,28 +86,34 @@ public final class CosmeticRegistry {
     }
 
     private Cosmetic parse(Category category, String id, ConfigurationSection section, Consumer<String> warn) {
-        ItemResolver items = plugin.items();
-        String item = section.getString("item");
-        String icon = section.getString("icon");
+        ItemResolver resolver = plugin.items();
+        List<String> items = specs(section, "item");
+        List<String> icons = specs(section, "icon");
         EffectDefinition effect = null;
         TrailDefinition trail = null;
 
         switch (category.kind()) {
             case SKIN, HAT -> {
-                if (item == null || item.isBlank()) {
+                if (items.isEmpty()) {
                     warn.accept("не указан предмет (item)");
                     return null;
                 }
-                if (ItemResolver.isBetterModel(item)) {
-                    if (category.kind() != Category.Kind.HAT) {
-                        warn.accept("модели BetterModel можно использовать только для шляп");
-                        return null;
+                List<String> usable = new ArrayList<>();
+                for (String spec : items) {
+                    if (!ItemResolver.isBetterModel(spec)) {
+                        resolver.check(spec, warn);
+                    } else if (category.kind() != Category.Kind.HAT) {
+                        warn.accept("модели BetterModel подходят только для шляп, «" + spec + "» пропущен");
+                        continue;
                     }
-                } else {
-                    items.check(item, warn);
-                    if (icon == null) {
-                        icon = item;
-                    }
+                    usable.add(spec);
+                }
+                if (usable.isEmpty()) {
+                    return null;
+                }
+                items = usable;
+                if (icons.isEmpty()) {
+                    icons = usable.stream().filter(spec -> !ItemResolver.isBetterModel(spec)).toList();
                 }
             }
             case EFFECT -> {
@@ -128,20 +135,24 @@ public final class CosmeticRegistry {
                 }
             }
         }
-        if (icon == null || icon.isBlank()) {
-            icon = category.defaultIcon().name();
-        }
-        items.check(icon, warn);
+        icons.forEach(icon -> resolver.check(icon, warn));
 
         return new Cosmetic(
                 category,
                 id,
                 section.getString("name", id),
                 List.copyOf(section.getStringList("lore")),
-                icon,
-                item,
+                List.copyOf(icons),
+                List.copyOf(items),
                 section.getString("permission", "applecosmetic." + category.key() + "." + id).trim(),
                 effect,
                 trail);
+    }
+
+    /** Значение поля: одна строка или список вариантов по убыванию предпочтения. */
+    private static List<String> specs(ConfigurationSection section, String key) {
+        List<String> raw = section.isList(key) ? section.getStringList(key)
+                : section.isSet(key) ? List.of(String.valueOf(section.get(key))) : List.of();
+        return raw.stream().map(String::trim).filter(spec -> !spec.isEmpty()).toList();
     }
 }
