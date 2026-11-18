@@ -17,6 +17,7 @@ import ru.applecosmetic.effect.TrailService;
 import ru.applecosmetic.hat.HatService;
 import ru.applecosmetic.item.ItemResolver;
 import ru.applecosmetic.menu.MenuManager;
+import ru.applecosmetic.pack.PackInstaller;
 import ru.applecosmetic.skin.SkinListener;
 import ru.applecosmetic.skin.SkinService;
 
@@ -34,6 +35,13 @@ public final class AppleCosmeticPlugin extends JavaPlugin {
     private EffectService effects;
     private TrailService trails;
     private MenuManager menus;
+
+    @Override
+    public void onLoad() {
+        // До включения ItemsAdder и BetterModel, чтобы они увидели модели уже при этом запуске.
+        saveDefaultConfig();
+        installModels(true);
+    }
 
     @Override
     public void onEnable() {
@@ -66,6 +74,8 @@ public final class AppleCosmeticPlugin extends JavaPlugin {
         }
 
         startTasks();
+        // При самом первом запуске ItemsAdder и BetterModel создают свои папки уже после включения.
+        Bukkit.getScheduler().runTask(this, () -> installModels(false));
         // Если плагин включён при игроках на сервере.
         applyToOnlinePlayers();
     }
@@ -98,9 +108,17 @@ public final class AppleCosmeticPlugin extends JavaPlugin {
         reloadConfig();
         settings.load(getConfig(), getLogger());
         messages.load();
+        installModels(false);
         items.invalidate();
         skins.invalidate();
+        hats.resetWarnings();
         registry.load();
+    }
+
+    private void installModels(boolean beforeEnable) {
+        if (getConfig().getBoolean("models.auto-install", true)) {
+            new PackInstaller(getFile(), getLogger()).install(beforeEnable);
+        }
     }
 
     private void startTasks() {
@@ -137,6 +155,7 @@ public final class AppleCosmeticPlugin extends JavaPlugin {
         }
         Bukkit.getScheduler().runTask(this, () -> {
             skins.invalidate();
+            hats.resetWarnings();
             menus.closeAll();
             applyToOnlinePlayers();
         });

@@ -1,0 +1,55 @@
+# Модели AppleCosmetic: мечи.
+# Файл создан tools/models/build.py вместе с моделями и текстурами этого набора.
+info:
+  namespace: applecosmetic
+items:
+  sword_frost:
+    name: "Ледяной клинок"
+    material: DIAMOND_SWORD
+    graphics:
+      model: item/sword_frost
+  sword_blood:
+    name: "Кровавый жнец"
+    material: DIAMOND_SWORD
+    graphics:
+      model: item/sword_blood
+  sword_emerald:
+    name: "Изумрудный страж"
+    material: DIAMOND_SWORD
+    graphics:
+      model: item/sword_emerald
+  sword_amethyst:
+    name: "Аметистовый осколок"
+    material: DIAMOND_SWORD
+    graphics:
+      model: item/sword_amethyst
+  sword_solar:
+    name: "Клинок солнца"
+    material: DIAMOND_SWORD
+    graphics:
+      model: item/sword_solar
+  sword_abyss:
+    name: "Клинок бездны"
+    material: DIAMOND_SWORD
+    graphics:
+      model: item/sword_abyss
+  sword_sakura:
+    name: "Клинок сакуры"
+    material: DIAMOND_SWORD
+    graphics:
+      model: item/sword_sakura
+  sword_nature:
+    name: "Клинок леса"
+    material: DIAMOND_SWORD
+    graphics:
+      model: item/sword_nature
+  sword_thunder:
+    name: "Громовой клинок"
+    material: DIAMOND_SWORD
+    graphics:
+      model: item/sword_thunder
+  sword_lunar:
+    name: "Лунный серп"
+    material: DIAMOND_SWORD
+    graphics:
+      model: item/sword_lunar
