@@ -25,6 +25,7 @@ import org.bukkit.plugin.Plugin;
  * Превращает строку из конфига в предмет. Форматы:
  * DIAMOND_SWORD, PAPER:1001, model:ns:path, head:текстура,
  * itemsadder:ns:id, nexo:id, oraxen:id, craftengine:ns:id.
+ * Там, где в конфиге указан список, берётся первый доступный вариант.
  */
 public final class ItemResolver {
 
@@ -53,9 +54,24 @@ public final class ItemResolver {
         return cached.map(ItemStack::clone).orElse(null);
     }
 
+    /** Первый доступный предмет из списка; модели BetterModel пропускаются. */
+    public ItemStack resolveFirst(List<String> specs) {
+        for (String spec : specs) {
+            if (isBetterModel(spec)) {
+                continue;
+            }
+            ItemStack item = resolve(spec);
+            if (item != null) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     /** Сбрасывает кэш: после перезагрузки конфига или предметов стороннего плагина. */
     public void invalidate() {
         cache.clear();
+        external.resetWarnings();
     }
 
     /** Проверяет при загрузке конфига те предметы, которые не зависят от сторонних плагинов. */
