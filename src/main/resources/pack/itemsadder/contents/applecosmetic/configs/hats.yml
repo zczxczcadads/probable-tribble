@@ -1,0 +1,55 @@
+# Модели AppleCosmetic: шляпы.
+# Файл создан tools/models/build.py вместе с моделями и текстурами этого набора.
+info:
+  namespace: applecosmetic
+items:
+  hat_crown:
+    name: "Королевская корона"
+    material: PAPER
+    graphics:
+      model: item/hat_crown
+  hat_wizard:
+    name: "Шляпа волшебника"
+    material: PAPER
+    graphics:
+      model: item/hat_wizard
+  hat_tophat:
+    name: "Цилиндр"
+    material: PAPER
+    graphics:
+      model: item/hat_tophat
+  hat_halo:
+    name: "Нимб"
+    material: PAPER
+    graphics:
+      model: item/hat_halo
+  hat_horns:
+    name: "Рога демона"
+    material: PAPER
+    graphics:
+      model: item/hat_horns
+  hat_cat_ears:
+    name: "Кошачьи ушки"
+    material: PAPER
+    graphics:
+      model: item/hat_cat_ears
+  hat_viking:
+    name: "Шлем викинга"
+    material: PAPER
+    graphics:
+      model: item/hat_viking
+  hat_straw:
+    name: "Соломенная шляпа"
+    material: PAPER
+    graphics:
+      model: item/hat_straw
+  hat_mushroom:
+    name: "Шляпка мухомора"
+    material: PAPER
+    graphics:
+      model: item/hat_mushroom
+  hat_headphones:
+    name: "Наушники"
+    material: PAPER
+    graphics:
+      model: item/hat_headphones
