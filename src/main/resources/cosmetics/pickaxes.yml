@@ -7,76 +7,80 @@
 #
 # Поля:
 #   name        — название в меню
-#   item        — откуда брать модель (форматы предметов описаны в config.yml)
+#   item        — откуда брать модель (форматы предметов описаны в config.yml).
+#                 Можно указать список: берётся первый доступный вариант
 #   icon        — иконка в меню; если не указана, берётся item
 #   lore        — описание в меню
 #   permission  — право доступа; по умолчанию applecosmetic.pickaxe.<id>,
 #                 пустая строка "" делает облик доступным всем
 #
-# Ниже — облики из обычных предметов Minecraft, они работают без ресурспака.
-# Чтобы подключить свои модели, замените item:
+# Ниже первым идёт 3D-модель из набора AppleCosmetic для ItemsAdder (плагин сам кладёт
+# набор в plugins/ItemsAdder/contents/applecosmetic), вторым — обычный предмет Minecraft,
+# который используется, пока ItemsAdder не установлен.
+#
+# Свои модели подключаются так же:
 #   item: "itemsadder:mypack:crystal_pickaxe"
 #   item: "nexo:crystal_pickaxe"
 #   item: "model:mypack:crystal_pickaxe"
 #   item: "PAPER:2001"
 
 items:
-  hammer:
-    name: "<gradient:#c9d6ff:#8f9bb3>Молот горняка</gradient>"
-    item: MACE
+  crystal:
+    name: "<gradient:#8ff0f0:#25b7c4>Кристальная кирка</gradient>"
+    item: ["itemsadder:applecosmetic:pickaxe_crystal", DIAMOND_PICKAXE]
     lore:
-      - "<gray>Камень крошится от одного вида."
+      - "<gray>Грани прочнее алмаза."
 
-  scythe:
-    name: "<gradient:#b9a6c2:#7d6f8a>Коса жнеца</gradient>"
-    item: NETHERITE_HOE
+  magma:
+    name: "<gradient:#ffb347:#d93a1a>Магмовая кирка</gradient>"
+    item: ["itemsadder:applecosmetic:pickaxe_magma", NETHERITE_PICKAXE]
     lore:
-      - "<gray>Собирает урожай руды."
+      - "<gray>Базальт, в трещинах которого течёт лава."
 
-  golden:
-    name: "<gradient:#ffe259:#ffa751>Золотая кирка</gradient>"
-    item: GOLDEN_PICKAXE
+  royal:
+    name: "<gradient:#ffe259:#ffa751>Королевская кирка</gradient>"
+    item: ["itemsadder:applecosmetic:pickaxe_royal", GOLDEN_PICKAXE]
     lore:
-      - "<gray>Любая кирка блестит, как золотая."
+      - "<gray>Золото и рубины для самой дорогой руды."
 
-  netherite:
-    name: "<gradient:#b9a6c2:#7d6f8a>Незеритовая кирка</gradient>"
-    item: NETHERITE_PICKAXE
+  bone:
+    name: "<gradient:#f2efe4:#bdb7a4>Костяная кирка</gradient>"
+    item: ["itemsadder:applecosmetic:pickaxe_bone", BONE]
     lore:
-      - "<gray>Любая кирка выглядит незеритовой."
+      - "<gray>Собрана из того, что осталось от шахтёров."
 
-  brush:
-    name: "<gradient:#f6d365:#fda085>Кисть археолога</gradient>"
-    item: BRUSH
+  amethyst:
+    name: "<gradient:#d39bff:#8a4dff>Аметистовая кирка</gradient>"
+    item: ["itemsadder:applecosmetic:pickaxe_amethyst", AMETHYST_SHARD]
     lore:
-      - "<gray>Аккуратная работа с породой."
+      - "<gray>Друзы кристаллов вместо стали."
 
-  key:
-    name: "<gradient:#ffd89b:#f0a868>Ключ от сокровищницы</gradient>"
-    item: TRIAL_KEY
+  forest:
+    name: "<gradient:#b6f27a:#3f8f2f>Кирка леса</gradient>"
+    item: ["itemsadder:applecosmetic:pickaxe_forest", WOODEN_PICKAXE]
     lore:
-      - "<gray>Открывает путь к любым залежам."
+      - "<gray>Живое дерево, мох и листья."
 
-  torch:
-    name: "<gradient:#ffe29f:#ff9f43>Шахтёрский факел</gradient>"
-    item: TORCH
+  drill:
+    name: "<gradient:#ffd54f:#8f9bb3>Бур</gradient>"
+    item: ["itemsadder:applecosmetic:pickaxe_drill", COPPER_PICKAXE]
     lore:
-      - "<gray>Светит и копает одновременно."
+      - "<gray>Техника на службе шахтёра."
 
-  shovel:
-    name: "<gradient:#7de8ff:#4d9dff>Сапёрная лопата</gradient>"
-    item: DIAMOND_SHOVEL
+  frost:
+    name: "<gradient:#e0f7ff:#7de8ff>Ледоруб</gradient>"
+    item: ["itemsadder:applecosmetic:pickaxe_frost", IRON_PICKAXE]
     lore:
-      - "<gray>Копать можно и ей."
+      - "<gray>Покрыт инеем и сосульками."
 
-  axe:
-    name: "<gradient:#a8ff78:#56ab2f>Секира дровосека</gradient>"
-    item: DIAMOND_AXE
+  ender:
+    name: "<gradient:#c77dff:#3a1466>Кирка Края</gradient>"
+    item: ["itemsadder:applecosmetic:pickaxe_ender", END_ROD]
     lore:
-      - "<gray>Рубит камень не хуже дерева."
+      - "<gray>Обсидиан и всевидящее око."
 
-  lightning_rod:
-    name: "<gradient:#ffb88c:#de6262>Громоотвод</gradient>"
-    item: LIGHTNING_ROD
+  star:
+    name: "<gradient:#ffe9a8:#3b4fb5>Звёздная кирка</gradient>"
+    item: ["itemsadder:applecosmetic:pickaxe_star", NETHER_STAR]
     lore:
-      - "<gray>Медный стержень на все случаи жизни."
+      - "<gray>Осколок ночного неба."
