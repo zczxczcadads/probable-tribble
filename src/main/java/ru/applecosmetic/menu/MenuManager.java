@@ -55,7 +55,7 @@ public final class MenuManager implements Listener {
             Cosmetic selected = cosmetics.selected(player, category);
             List<String> lore = new ArrayList<>(button.getStringList("lore"));
             lore.addAll(config.getStringList("category-lore"));
-            ItemStack icon = icon(button.getString("icon"), category.defaultIcon(),
+            ItemStack icon = icon(one(button.getString("icon")), category.defaultIcon(),
                     button.getString("name", cosmetics.title(category)), lore, false,
                     "selected", selected == null ? plugin.messages().raw("none") : selected.name(),
                     "owned", String.valueOf(cosmetics.owned(player, category)),
@@ -137,7 +137,7 @@ public final class MenuManager implements Listener {
             if (category.previewable()) {
                 lore.addAll(config.getStringList("status.preview"));
             }
-            ItemStack icon = icon(cosmetic.icon(), category.defaultIcon(), cosmetic.name(), lore, selected && glint);
+            ItemStack icon = icon(cosmetic.icons(), category.defaultIcon(), cosmetic.name(), lore, selected && glint);
             menu.set(slots.get(i), icon, (clicker, click) -> {
                 if (click.isRightClick() && category.previewable()) {
                     preview(clicker, cosmetic);
@@ -237,7 +237,7 @@ public final class MenuManager implements Listener {
     }
 
     private ItemStack button(ConfigurationSection config, Material fallback, String... placeholders) {
-        return icon(config.getString("icon"), fallback, config.getString("name", ""),
+        return icon(one(config.getString("icon")), fallback, config.getString("name", ""),
                 config.getStringList("lore"), false, placeholders);
     }
 

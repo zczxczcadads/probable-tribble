@@ -2,6 +2,8 @@ package ru.applecosmetic.item;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
@@ -57,33 +59,48 @@ final class ExternalItems {
     }
 
     private final Logger logger;
+    // Событие загрузки ItemsAdder приходит не из основного потока.
+    private final Set<Provider> ready = ConcurrentHashMap.newKeySet();
+    private final Set<String> reported = ConcurrentHashMap.newKeySet();
 
     ExternalItems(Logger logger) {
         this.logger = logger;
     }
 
+    /** После сброса о недоступных предметах сообщается заново. */
+    void resetWarnings() {
+        reported.clear();
+    }
+
     ItemStack fetch(Provider provider, String id, String spec) {
         if (!Bukkit.getPluginManager().isPluginEnabled(provider.plugin)) {
-            logger.warning("Предмет «" + spec + "» недоступен: плагин " + provider.plugin + " не установлен.");
+            if (reported.add(provider.plugin)) {
+                logger.info("Плагин " + provider.plugin + " не установлен: его предметы («" + spec
+                        + "» и другие) заменяются запасными вариантами.");
+            }
             return null;
         }
         try {
             Method lookup = Class.forName(provider.apiClass).getMethod(provider.lookupMethod, String.class);
             Object found = lookup.invoke(null, id);
-            if (found == null) {
-                logger.warning("Предмет «" + spec + "» не найден в " + provider.plugin + ".");
-                return null;
-            }
-            Object built = lookup.getReturnType().getMethod(provider.buildMethod).invoke(found);
+            Object built = found == null ? null : lookup.getReturnType().getMethod(provider.buildMethod).invoke(found);
             if (built instanceof ItemStack stack && !stack.isEmpty()) {
+                ready.add(provider);
                 return stack.clone();
             }
-            logger.warning("Предмет «" + spec + "» не найден в " + provider.plugin + ".");
+            // Пока плагин не сообщил, что загрузил предметы, их отсутствие — не ошибка.
+            if (ready.contains(provider) && reported.add(spec)) {
+                logger.warning("Предмет «" + spec + "» не найден в " + provider.plugin + ".");
+            }
         } catch (InvocationTargetException e) {
-            logger.warning("Не удалось получить предмет «" + spec + "» из " + provider.plugin + ": " + e.getCause());
+            if (reported.add(spec)) {
+                logger.warning("Не удалось получить предмет «" + spec + "» из " + provider.plugin + ": " + e.getCause());
+            }
         } catch (ReflectiveOperationException | LinkageError e) {
-            logger.warning("Версия " + provider.plugin + " не поддерживается, предмет «" + spec
-                    + "» недоступен: " + e);
+            if (reported.add(provider.plugin)) {
+                logger.warning("Версия " + provider.plugin + " не поддерживается, предмет «" + spec
+                        + "» недоступен: " + e);
+            }
         }
         return null;
     }
@@ -98,8 +115,10 @@ final class ExternalItems {
             }
             try {
                 Class<? extends Event> event = Class.forName(provider.loadEvent).asSubclass(Event.class);
-                Bukkit.getPluginManager().registerEvent(event, marker, EventPriority.MONITOR,
-                        (listener, fired) -> onLoaded.run(), owner);
+                Bukkit.getPluginManager().registerEvent(event, marker, EventPriority.MONITOR, (listener, fired) -> {
+                    ready.add(provider);
+                    onLoaded.run();
+                }, owner);
                 logger.info("Подключена поддержка " + provider.plugin + ".");
             } catch (ReflectiveOperationException | LinkageError | ClassCastException e) {
                 logger.warning("Не удалось подписаться на загрузку предметов " + provider.plugin + ": " + e);
