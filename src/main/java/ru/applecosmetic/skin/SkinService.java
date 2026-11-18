@@ -183,7 +183,7 @@ public final class SkinService {
     }
 
     private Optional<Skin> build(Cosmetic cosmetic) {
-        ItemStack source = plugin.items().resolve(cosmetic.item());
+        ItemStack source = plugin.items().resolveFirst(cosmetic.items());
         if (source == null) {
             return Optional.empty();
         }
