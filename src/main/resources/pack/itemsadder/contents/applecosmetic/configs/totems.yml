@@ -1,0 +1,10 @@
+# Модели AppleCosmetic: тотемы.
+# Файл создан tools/models/build.py вместе с моделями и текстурами этого набора.
+info:
+  namespace: applecosmetic
+items:
+  totem_angel:
+    name: "Ангел-хранитель"
+    material: TOTEM_OF_UNDYING
+    graphics:
+      model: item/totem_angel

@@ -1,0 +1,10 @@
+# Модели AppleCosmetic: мечи.
+# Файл создан tools/models/build.py вместе с моделями и текстурами этого набора.
+info:
+  namespace: applecosmetic
+items:
+  sword_frost:
+    name: "Ледяной клинок"
+    material: DIAMOND_SWORD
+    graphics:
+      model: item/sword_frost
