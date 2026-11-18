@@ -1,0 +1,10 @@
+# Модели AppleCosmetic: шляпы.
+# Файл создан tools/models/build.py вместе с моделями и текстурами этого набора.
+info:
+  namespace: applecosmetic
+items:
+  hat_crown:
+    name: "Королевская корона"
+    material: PAPER
+    graphics:
+      model: item/hat_crown
