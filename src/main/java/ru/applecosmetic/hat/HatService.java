@@ -56,11 +56,28 @@ public final class HatService implements Listener {
     public void update(Player player) {
         UUID id = player.getUniqueId();
         Cosmetic cosmetic = plugin.cosmetics().selected(player, Category.HAT);
-        String spec = cosmetic == null ? null : cosmetic.item();
-        boolean model = ItemResolver.isBetterModel(spec);
+        String model = null;
+        ItemStack hat = null;
+        if (cosmetic != null) {
+            // Используется первый доступный вариант из списка item.
+            for (String spec : cosmetic.items()) {
+                if (ItemResolver.isBetterModel(spec)) {
+                    String name = ItemResolver.betterModelName(spec);
+                    BetterModelHook hook = hook();
+                    if (hook != null && hook.hasModel(name)) {
+                        model = name;
+                        break;
+                    }
+                } else if ((hat = build(spec)) != null) {
+                    break;
+                }
+            }
+            if (model == null && hat == null && reported.add(cosmetic.id())) {
+                plugin.getLogger().warning("Шляпа «" + cosmetic.id() + "» недоступна: не найден ни один из её предметов.");
+            }
+        }
 
-        updateModel(player, model ? ItemResolver.betterModelName(spec) : null);
-        ItemStack hat = spec == null || model ? null : build(spec);
+        updateModel(player, model);
         if (hat == null) {
             hats.remove(id);
         } else {
@@ -121,6 +138,11 @@ public final class HatService implements Listener {
         shownToOthers.remove(id);
         shownToSelf.remove(id);
         updateModel(player, null);
+    }
+
+    /** После перезагрузки о недоступных шляпах сообщается заново. */
+    public void resetWarnings() {
+        reported.clear();
     }
 
     /** Возвращает всем настоящие шлемы: при выключении плагина. */
@@ -185,13 +207,7 @@ public final class HatService implements Listener {
                 hook.detach(current.tracker());
             }
         }
-        if (model == null) {
-            return;
-        }
-        if (hook == null) {
-            if (reported.add(model)) {
-                plugin.getLogger().warning("Шляпа «bettermodel:" + model + "» недоступна: плагин BetterModel не установлен.");
-            }
+        if (model == null || hook == null) {
             return;
         }
         Object tracker = hook.attach(player, model);
@@ -209,11 +225,12 @@ public final class HatService implements Listener {
 
     private void refreshLater(Player player) {
         if (hats.containsKey(player.getUniqueId()) || shownToOthers.contains(player.getUniqueId())) {
-            Bukkit.getScheduler().runTask(plugin, () -> {
+            // Через два тика: признак невидимости сервер обновляет позже, чем снимает эффект.
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {
                 if (player.isOnline()) {
                     refresh(player);
                 }
-            });
+            }, 2L);
         }
     }
 
