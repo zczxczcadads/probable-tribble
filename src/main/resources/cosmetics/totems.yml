@@ -7,76 +7,80 @@
 #
 # Поля:
 #   name        — название в меню
-#   item        — откуда брать модель (форматы предметов описаны в config.yml)
+#   item        — откуда брать модель (форматы предметов описаны в config.yml).
+#                 Можно указать список: берётся первый доступный вариант
 #   icon        — иконка в меню; если не указана, берётся item
 #   lore        — описание в меню
 #   permission  — право доступа; по умолчанию applecosmetic.totem.<id>,
 #                 пустая строка "" делает облик доступным всем
 #
-# Ниже — облики из обычных предметов Minecraft, они работают без ресурспака.
-# Чтобы подключить свои модели, замените item:
+# Ниже первым идёт 3D-модель из набора AppleCosmetic для ItemsAdder (плагин сам кладёт
+# набор в plugins/ItemsAdder/contents/applecosmetic), вторым — обычный предмет Minecraft,
+# который используется, пока ItemsAdder не установлен.
+#
+# Свои модели подключаются так же:
 #   item: "itemsadder:mypack:angel_totem"
 #   item: "nexo:angel_totem"
 #   item: "model:mypack:angel_totem"
 #   item: "PAPER:3001"
 
 items:
-  apple:
-    name: "<gradient:#ffe259:#ff8c42>Яблоко бессмертия</gradient>"
-    item: ENCHANTED_GOLDEN_APPLE
+  angel:
+    name: "<gradient:#ffffff:#ffe9a8>Ангел-хранитель</gradient>"
+    item: ["itemsadder:applecosmetic:totem_angel", FEATHER]
     lore:
-      - "<gray>Зачарованное яблоко вместо тотема."
+      - "<gray>Он присматривает за вами."
 
-  star:
-    name: "<gradient:#ffffff:#c9d6ff>Звезда Незера</gradient>"
-    item: NETHER_STAR
+  demon:
+    name: "<gradient:#ff5a5a:#5a0f14>Демон</gradient>"
+    item: ["itemsadder:applecosmetic:totem_demon", WITHER_SKELETON_SKULL]
     lore:
-      - "<gray>Сияние поверженного иссушителя."
+      - "<gray>Сделка, о которой вы не пожалеете."
 
-  sea_heart:
-    name: "<gradient:#2af5d0:#2a7fff>Сердце моря</gradient>"
-    item: HEART_OF_THE_SEA
+  frost:
+    name: "<gradient:#e0f7ff:#58b4e6>Ледяной дух</gradient>"
+    item: ["itemsadder:applecosmetic:totem_frost", BLUE_ICE]
     lore:
-      - "<gray>Хранит силу океана."
+      - "<gray>Холод, который бережёт жизнь."
 
-  dragon_egg:
-    name: "<gradient:#d39bff:#8a4dff>Яйцо дракона</gradient>"
-    item: DRAGON_EGG
+  golden:
+    name: "<gradient:#ffe259:#ffa751>Золотой идол</gradient>"
+    item: ["itemsadder:applecosmetic:totem_golden", ENCHANTED_GOLDEN_APPLE]
     lore:
-      - "<gray>Главный трофей Края."
+      - "<gray>Идол древнего храма солнца."
 
-  ender_eye:
-    name: "<gradient:#a8ff78:#3bb78f>Око Края</gradient>"
-    item: ENDER_EYE
+  forest:
+    name: "<gradient:#b6f27a:#3f8f2f>Дух леса</gradient>"
+    item: ["itemsadder:applecosmetic:totem_forest", OAK_SAPLING]
     lore:
-      - "<gray>Оно видит, когда вам грозит опасность."
+      - "<gray>Маленький хранитель большой чащи."
 
-  crystal:
-    name: "<gradient:#ffb3e6:#c77dff>Кристалл Края</gradient>"
-    item: END_CRYSTAL
+  ocean:
+    name: "<gradient:#2af5d0:#2a7fff>Страж глубин</gradient>"
+    item: ["itemsadder:applecosmetic:totem_ocean", HEART_OF_THE_SEA]
     lore:
-      - "<gray>Исцеляет не только драконов."
+      - "<gray>Его глаз следит за опасностью."
 
-  wither_skull:
-    name: "<gradient:#b9a6c2:#7d6f8a>Череп иссушителя</gradient>"
-    item: WITHER_SKELETON_SKULL
+  heart:
+    name: "<gradient:#ff9ac1:#ff2e63>Крылатое сердце</gradient>"
+    item: ["itemsadder:applecosmetic:totem_heart", POPPY]
+    lore:
+      - "<gray>Вторая жизнь — от чистого сердца."
+
+  skull:
+    name: "<gradient:#f2efe4:#8e9eab>Череп</gradient>"
+    item: ["itemsadder:applecosmetic:totem_skull", SKELETON_SKULL]
     lore:
       - "<gray>Смерть отступает перед смертью."
 
-  clock:
-    name: "<gradient:#ffe259:#ffa751>Хранитель времени</gradient>"
-    item: CLOCK
+  ender:
+    name: "<gradient:#c77dff:#3a1466>Идол Края</gradient>"
+    item: ["itemsadder:applecosmetic:totem_ender", ENDER_EYE]
     lore:
-      - "<gray>Отматывает последний миг назад."
+      - "<gray>Око видит миг до гибели."
 
-  diamond:
-    name: "<gradient:#7de8ff:#4d9dff>Чистый алмаз</gradient>"
-    item: DIAMOND
+  cat:
+    name: "<gradient:#ffffff:#ffcf5a>Кот удачи</gradient>"
+    item: ["itemsadder:applecosmetic:totem_cat", COD]
     lore:
-      - "<gray>Дороже жизни ничего нет."
-
-  cake:
-    name: "<gradient:#ffd1dc:#ff9aa2>Праздничный торт</gradient>"
-    item: CAKE
-    lore:
-      - "<gray>Второй день рождения."
+      - "<gray>У кошки девять жизней. Одной она поделится."
