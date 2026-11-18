@@ -49,6 +49,15 @@ public final class BetterModelHook {
         }
     }
 
+    /** Загружена ли в BetterModel модель с таким именем. */
+    public boolean hasModel(String model) {
+        try {
+            return findModel.invoke(null, model) instanceof Optional<?> optional && optional.isPresent();
+        } catch (ReflectiveOperationException | LinkageError e) {
+            return false;
+        }
+    }
+
     /** Закрепляет модель на игроке и возвращает её трекер или null при ошибке. */
     public Object attach(Player player, String model) {
         try {

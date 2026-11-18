@@ -7,76 +7,80 @@
 #
 # Поля:
 #   name        — название в меню
-#   item        — откуда брать модель (форматы предметов описаны в config.yml)
+#   item        — откуда брать модель (форматы предметов описаны в config.yml).
+#                 Можно указать список: берётся первый доступный вариант
 #   icon        — иконка в меню; если не указана, берётся item
 #   lore        — описание в меню
 #   permission  — право доступа; по умолчанию applecosmetic.sword.<id>,
 #                 пустая строка "" делает облик доступным всем
 #
-# Ниже — облики из обычных предметов Minecraft, они работают без ресурспака.
-# Чтобы подключить свои модели, замените item:
+# Ниже первым идёт 3D-модель из набора AppleCosmetic для ItemsAdder (плагин сам кладёт
+# набор в plugins/ItemsAdder/contents/applecosmetic), вторым — обычный предмет Minecraft,
+# который используется, пока ItemsAdder не установлен.
+#
+# Свои модели подключаются так же:
 #   item: "itemsadder:mypack:ice_sword"
 #   item: "nexo:ice_sword"
 #   item: "model:mypack:ice_sword"
 #   item: "PAPER:1001"
 
 items:
-  trident:
-    name: "<gradient:#2af5d0:#2a7fff>Трезубец Посейдона</gradient>"
-    item: TRIDENT
+  frost:
+    name: "<gradient:#a8e6ff:#58b4e6>Ледяной клинок</gradient>"
+    item: ["itemsadder:applecosmetic:sword_frost", BREEZE_ROD]
     lore:
-      - "<gray>Меч принимает облик морского трезубца."
+      - "<gray>Клинок из вечного льда."
 
-  blaze:
-    name: "<gradient:#ffb347:#ff5f1f>Пылающий стержень</gradient>"
-    item: BLAZE_ROD
+  blood:
+    name: "<gradient:#ff5a5a:#8a0f1c>Кровавый жнец</gradient>"
+    item: ["itemsadder:applecosmetic:sword_blood", NETHERITE_SWORD]
     lore:
-      - "<gray>Раскалённый стержень прямиком из Незера."
+      - "<gray>Зазубренная сталь, не знающая пощады."
 
-  breeze:
-    name: "<gradient:#cfe9ff:#8fb8ff>Жезл ветров</gradient>"
-    item: BREEZE_ROD
+  emerald:
+    name: "<gradient:#7dffb0:#17a05a>Изумрудный страж</gradient>"
+    item: ["itemsadder:applecosmetic:sword_emerald", GOLDEN_SWORD]
     lore:
-      - "<gray>Лёгкий, как порыв ветра."
-
-  light:
-    name: "<gradient:#ffffff:#ffe9a8>Клинок света</gradient>"
-    item: END_ROD
-    lore:
-      - "<gray>Сияющий стержень из городов Края."
-
-  bone:
-    name: "<gradient:#f2efe4:#bdb7a4>Костяной тесак</gradient>"
-    item: BONE
-    lore:
-      - "<gray>Трофей с поверженного скелета."
+      - "<gray>Изумруд в золотой оправе."
 
   amethyst:
     name: "<gradient:#d39bff:#8a4dff>Аметистовый осколок</gradient>"
-    item: AMETHYST_SHARD
+    item: ["itemsadder:applecosmetic:sword_amethyst", AMETHYST_SHARD]
     lore:
       - "<gray>Острый кристалл из глубин жеоды."
 
-  golden:
-    name: "<gradient:#ffe259:#ffa751>Золотой клинок</gradient>"
-    item: GOLDEN_SWORD
+  solar:
+    name: "<gradient:#ffe259:#ff8a1f>Клинок солнца</gradient>"
+    item: ["itemsadder:applecosmetic:sword_solar", BLAZE_ROD]
     lore:
-      - "<gray>Любой меч блестит, как золотой."
+      - "<gray>Пламенеющий клинок цвета рассвета."
 
-  netherite:
-    name: "<gradient:#b9a6c2:#7d6f8a>Клинок преисподней</gradient>"
-    item: NETHERITE_SWORD
+  abyss:
+    name: "<gradient:#2af5d0:#0d5c6b>Клинок бездны</gradient>"
+    item: ["itemsadder:applecosmetic:sword_abyss", ECHO_SHARD]
     lore:
-      - "<gray>Любой меч выглядит незеритовым."
+      - "<gray>Руны светятся в темноте глубин."
 
-  spear:
-    name: "<gradient:#7de8ff:#4d9dff>Алмазное копьё</gradient>"
-    item: DIAMOND_SPEAR
+  sakura:
+    name: "<gradient:#ffd1dc:#ff7fa8>Клинок сакуры</gradient>"
+    item: ["itemsadder:applecosmetic:sword_sakura", PINK_TULIP]
     lore:
-      - "<gray>Оружие всадников."
+      - "<gray>Катана цвета весеннего цветения."
 
-  fish:
-    name: "<gradient:#ffcf99:#d98b4a>Рыба-меч</gradient>"
-    item: COD
+  nature:
+    name: "<gradient:#b6f27a:#3f8f2f>Клинок леса</gradient>"
+    item: ["itemsadder:applecosmetic:sword_nature", BAMBOO]
     lore:
-      - "<gray>Свежая. Бьёт больно."
+      - "<gray>Живое дерево, оплетённое лозой."
+
+  thunder:
+    name: "<gradient:#fff59d:#4d9dff>Громовой клинок</gradient>"
+    item: ["itemsadder:applecosmetic:sword_thunder", TRIDENT]
+    lore:
+      - "<gray>Застывшая молния."
+
+  lunar:
+    name: "<gradient:#c9b8ff:#5a3fb0>Лунный серп</gradient>"
+    item: ["itemsadder:applecosmetic:sword_lunar", NETHERITE_HOE]
+    lore:
+      - "<gray>Полумесяц на ночном небе."
