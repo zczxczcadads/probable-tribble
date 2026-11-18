@@ -1,0 +1,55 @@
+# Модели AppleCosmetic: кирки.
+# Файл создан tools/models/build.py вместе с моделями и текстурами этого набора.
+info:
+  namespace: applecosmetic
+items:
+  pickaxe_crystal:
+    name: "Кристальная кирка"
+    material: DIAMOND_PICKAXE
+    graphics:
+      model: item/pickaxe_crystal
+  pickaxe_magma:
+    name: "Магмовая кирка"
+    material: DIAMOND_PICKAXE
+    graphics:
+      model: item/pickaxe_magma
+  pickaxe_royal:
+    name: "Королевская кирка"
+    material: DIAMOND_PICKAXE
+    graphics:
+      model: item/pickaxe_royal
+  pickaxe_bone:
+    name: "Костяная кирка"
+    material: DIAMOND_PICKAXE
+    graphics:
+      model: item/pickaxe_bone
+  pickaxe_amethyst:
+    name: "Аметистовая кирка"
+    material: DIAMOND_PICKAXE
+    graphics:
+      model: item/pickaxe_amethyst
+  pickaxe_forest:
+    name: "Кирка леса"
+    material: DIAMOND_PICKAXE
+    graphics:
+      model: item/pickaxe_forest
+  pickaxe_drill:
+    name: "Бур"
+    material: DIAMOND_PICKAXE
+    graphics:
+      model: item/pickaxe_drill
+  pickaxe_frost:
+    name: "Ледоруб"
+    material: DIAMOND_PICKAXE
+    graphics:
+      model: item/pickaxe_frost
+  pickaxe_ender:
+    name: "Кирка Края"
+    material: DIAMOND_PICKAXE
+    graphics:
+      model: item/pickaxe_ender
+  pickaxe_star:
+    name: "Звёздная кирка"
+    material: DIAMOND_PICKAXE
+    graphics:
+      model: item/pickaxe_star

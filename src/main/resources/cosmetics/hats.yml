@@ -6,81 +6,85 @@
 #
 # Поля:
 #   name        — название в меню
-#   item        — предмет, который надевается на голову (форматы описаны в config.yml)
+#   item        — предмет, который надевается на голову (форматы описаны в config.yml).
+#                 Можно указать список: берётся первый доступный вариант
 #   icon        — иконка в меню; если не указана, берётся item
 #   lore        — описание в меню
 #   permission  — право доступа; по умолчанию applecosmetic.hat.<id>,
 #                 пустая строка "" делает шляпу доступной всем
 #
-# Ниже — шляпы из обычных блоков и голов Minecraft, они работают без ресурспака.
-# Чтобы подключить свои модели, замените item:
+# У каждой шляпы ниже три варианта по порядку:
+#   1) предмет из набора AppleCosmetic для ItemsAdder — модель сидит на голове как часть игрока;
+#   2) та же модель для BetterModel — используется, если ItemsAdder нет, а BetterModel установлен;
+#   3) обычный блок Minecraft — если нет ни того, ни другого.
+# Плагин сам кладёт модели в plugins/ItemsAdder/contents/applecosmetic и plugins/BetterModel/models.
+# Чтобы шляпы всегда показывал BetterModel, поставьте его строку первой.
+#
+# Свои модели подключаются так же:
 #   item: "itemsadder:mypack:crown"
 #   item: "nexo:crown"
 #   item: "model:mypack:crown"
 #   item: "PAPER:4001"
 #   item: "head:<значение текстуры>"
-#
-# Модель BetterModel закрепляется на игроке целиком, поэтому ей нужна отдельная иконка:
-#   item: "bettermodel:crown"
-#   icon: GOLDEN_HELMET
+#   item: "bettermodel:crown"      # такой шляпе нужна отдельная иконка: icon: GOLDEN_HELMET
 
 items:
-  astronaut:
-    name: "<gradient:#e0f7ff:#9fd8ff>Шлем космонавта</gradient>"
-    item: GLASS
+  crown:
+    name: "<gradient:#ffe259:#ffa751>Королевская корона</gradient>"
+    item: ["itemsadder:applecosmetic:hat_crown", "bettermodel:ac_hat_crown", GOLD_BLOCK]
     lore:
-      - "<gray>К полёту готов."
+      - "<gray>Тяжела, но как сидит."
 
-  jack:
-    name: "<gradient:#ffb347:#ff5f1f>Светильник Джека</gradient>"
-    item: JACK_O_LANTERN
+  wizard:
+    name: "<gradient:#c9b8ff:#5a3fb0>Шляпа волшебника</gradient>"
+    item: ["itemsadder:applecosmetic:hat_wizard", "bettermodel:ac_hat_wizard", AMETHYST_BLOCK]
     lore:
-      - "<gray>Тыква, которая не мешает обзору."
+      - "<gray>Звёзды на ней настоящие."
 
-  dragon:
-    name: "<gradient:#d39bff:#8a4dff>Голова дракона</gradient>"
-    item: DRAGON_HEAD
+  tophat:
+    name: "<gradient:#d7d2cc:#5b6470>Цилиндр</gradient>"
+    item: ["itemsadder:applecosmetic:hat_tophat", "bettermodel:ac_hat_tophat", COAL_BLOCK]
     lore:
-      - "<gray>Трофей с корабля Края."
+      - "<gray>Для тех, кто копает в смокинге."
 
-  creeper:
-    name: "<gradient:#a8ff78:#56ab2f>Маска крипера</gradient>"
-    item: CREEPER_HEAD
+  halo:
+    name: "<gradient:#ffffff:#ffe168>Нимб</gradient>"
+    item: ["itemsadder:applecosmetic:hat_halo", "bettermodel:ac_hat_halo", GLOWSTONE]
     lore:
-      - "<gray>Ш-ш-ш-ш…"
+      - "<gray>Вы сегодня хорошо себя вели."
 
-  wither:
-    name: "<gradient:#b9a6c2:#7d6f8a>Череп иссушителя</gradient>"
-    item: WITHER_SKELETON_SKULL
+  horns:
+    name: "<gradient:#ff5a5a:#5a0f14>Рога демона</gradient>"
+    item: ["itemsadder:applecosmetic:hat_horns", "bettermodel:ac_hat_horns", WITHER_SKELETON_SKULL]
     lore:
-      - "<gray>Мрачный привет из крепости Незера."
+      - "<gray>А сегодня — не очень."
 
-  piglin:
-    name: "<gradient:#ffd89b:#f0a868>Маска пиглина</gradient>"
-    item: PIGLIN_HEAD
+  cat_ears:
+    name: "<gradient:#ffd1dc:#ff8fab>Кошачьи ушки</gradient>"
+    item: ["itemsadder:applecosmetic:hat_cat_ears", "bettermodel:ac_hat_cat_ears", PINK_WOOL]
     lore:
-      - "<gray>Свой среди пиглинов."
+      - "<gray>Мяу."
 
-  melon:
-    name: "<gradient:#a8ff78:#ff6b6b>Арбузная каска</gradient>"
-    item: MELON
+  viking:
+    name: "<gradient:#cfd8e6:#8a6a3a>Шлем викинга</gradient>"
+    item: ["itemsadder:applecosmetic:hat_viking", "bettermodel:ac_hat_viking", IRON_BLOCK]
     lore:
-      - "<gray>Сочная защита от солнца."
+      - "<gray>В Вальхаллу — с киркой наперевес."
 
-  tnt:
-    name: "<gradient:#ff6b6b:#ffe66d>Взрывной характер</gradient>"
-    item: TNT
-    lore:
-      - "<gray>Главное — не поджигать."
-
-  beacon:
-    name: "<gradient:#7de8ff:#b3ffab>Ходячий маяк</gradient>"
-    item: BEACON
-    lore:
-      - "<gray>Вас видно издалека."
-
-  hay:
-    name: "<gradient:#ffe259:#d4a017>Соломенная шляпа</gradient>"
-    item: HAY_BLOCK
+  straw:
+    name: "<gradient:#ffe9a8:#d4a017>Соломенная шляпа</gradient>"
+    item: ["itemsadder:applecosmetic:hat_straw", "bettermodel:ac_hat_straw", HAY_BLOCK]
     lore:
       - "<gray>Выбор лучших фермеров."
+
+  mushroom:
+    name: "<gradient:#ff6b6b:#fff3e0>Шляпка мухомора</gradient>"
+    item: ["itemsadder:applecosmetic:hat_mushroom", "bettermodel:ac_hat_mushroom", RED_MUSHROOM_BLOCK]
+    lore:
+      - "<gray>Красиво, но есть не стоит."
+
+  headphones:
+    name: "<gradient:#7df9ff:#b44dff>Наушники</gradient>"
+    item: ["itemsadder:applecosmetic:hat_headphones", "bettermodel:ac_hat_headphones", NOTE_BLOCK]
+    lore:
+      - "<gray>Не слышу криперов."
